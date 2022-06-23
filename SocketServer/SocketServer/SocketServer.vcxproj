@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\projects\c++projects\ServerCoreLibrary\ServerCoreLibrary;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Library\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\ServerCoreLibrary\ServerCoreLibrary;$(SolutionDir)..\Library\Include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\Library\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -82,8 +82,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\projects\c++projects\ServerCoreLibrary\ServerCoreLibrary;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Library\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\ServerCoreLibrary\ServerCoreLibrary;$(SolutionDir)..\Library\Include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\Library\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -129,7 +129,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -158,19 +158,36 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ClientSession.cpp" />
+    <ClCompile Include="IPacketHandler.cpp" />
+    <ClCompile Include="LoginHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PacketHandlerManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="protobuf\EquipItem.pb.cc" />
+    <ClCompile Include="protobuf\Player.pb.cc" />
+    <ClCompile Include="protobuf\SearchRequest.pb.cc" />
     <ClCompile Include="SocketServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientSession.h" />
+    <ClInclude Include="IPacketHandler.h" />
+    <ClInclude Include="LoginHandler.h" />
+    <ClInclude Include="PacketHandlerManager.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="protobuf\EquipItem.pb.h" />
+    <ClInclude Include="protobuf\Player.pb.h" />
+    <ClInclude Include="protobuf\SearchRequest.pb.h" />
     <ClInclude Include="SocketServer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="protobuf\proto_files\EquipItem.proto" />
+    <None Include="protobuf\proto_files\Player.proto" />
+    <None Include="protobuf\proto_files\SearchRequest.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

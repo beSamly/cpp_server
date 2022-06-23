@@ -8,6 +8,21 @@
     <Filter Include="Source Files\NetworkImpl">
       <UniqueIdentifier>{50eb5868-56e7-4a97-8540-db2092140efc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Protobuf">
+      <UniqueIdentifier>{05321e6f-c62e-4ac8-9e30-c648f41f3224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Protobuf\protofiles">
+      <UniqueIdentifier>{56f30bde-66c6-4b5a-813e-1dcadfc1a2b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NetworkImpl\PacketHandler">
+      <UniqueIdentifier>{a5d79e22-71bf-457b-8413-4414e6ee9a60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NetworkImpl\PacketHandler\Auth">
+      <UniqueIdentifier>{4a8487e6-bb9d-40cd-855f-0b3955c9967a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NetworkImpl\PacketHandler\Interface">
+      <UniqueIdentifier>{1d8e92e8-6427-4247-88a5-c066a5e76b0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -22,6 +37,24 @@
     <ClCompile Include="ClientSession.cpp">
       <Filter>Source Files\NetworkImpl</Filter>
     </ClCompile>
+    <ClCompile Include="protobuf\EquipItem.pb.cc">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="protobuf\Player.pb.cc">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="protobuf\SearchRequest.pb.cc">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandlerManager.cpp">
+      <Filter>Source Files\NetworkImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginHandler.cpp">
+      <Filter>Source Files\NetworkImpl\PacketHandler\Auth</Filter>
+    </ClCompile>
+    <ClCompile Include="IPacketHandler.cpp">
+      <Filter>Source Files\NetworkImpl\PacketHandler\Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -33,5 +66,34 @@
     <ClInclude Include="ClientSession.h">
       <Filter>Source Files\NetworkImpl</Filter>
     </ClInclude>
+    <ClInclude Include="protobuf\EquipItem.pb.h">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="protobuf\Player.pb.h">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="protobuf\SearchRequest.pb.h">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandlerManager.h">
+      <Filter>Source Files\NetworkImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginHandler.h">
+      <Filter>Source Files\NetworkImpl\PacketHandler\Auth</Filter>
+    </ClInclude>
+    <ClInclude Include="IPacketHandler.h">
+      <Filter>Source Files\NetworkImpl\PacketHandler\Interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="protobuf\proto_files\SearchRequest.proto">
+      <Filter>Source Files\Protobuf\protofiles</Filter>
+    </None>
+    <None Include="protobuf\proto_files\EquipItem.proto">
+      <Filter>Source Files\Protobuf\protofiles</Filter>
+    </None>
+    <None Include="protobuf\proto_files\Player.proto">
+      <Filter>Source Files\Protobuf\protofiles</Filter>
+    </None>
   </ItemGroup>
 </Project>

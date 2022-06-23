@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Session.h"
 
 /*-----------------
@@ -16,7 +17,6 @@ class ClientSession : public Session
 public:
 	ClientSession();
 	virtual ~ClientSession();
-
 	//ClientSessionRef	GetClientSessionRef();
 
 private:
@@ -27,7 +27,5 @@ private:
 	virtual int32	OnRecv(BYTE* buffer, int32 len) override;
 
 private:
-	void			OnRecvPacket(BYTE* buffer, int32 len);
-
-protected:
+	void				OnRecvPacket(BYTE* buffer, int32 len);
 };

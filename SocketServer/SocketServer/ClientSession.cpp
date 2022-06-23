@@ -1,5 +1,6 @@
-#include "ClientSession.h"
 #include "pch.h"
+#include "ClientSession.h"
+#include "PacketHandlerManager.h"
 
 ClientSession::ClientSession()
 {
@@ -10,10 +11,10 @@ ClientSession::~ClientSession()
 {
 	//TODO
 }
-//
+
 //ClientSessionRef ClientSession::GetClientSessionRef()
 //{
-//	return std::static_pointer_cast<ClientSession>(shared_from_this());
+//	return static_pointer_cast<ClientSession>(shared_from_this());
 //}
 
 // [size(2)][id(2)][data....][size(2)][id(2)][data....]
@@ -62,13 +63,12 @@ void ClientSession::OnDisconnected()
 	_players.clear();*/
 }
 
+
 void ClientSession::OnRecvPacket(BYTE* buffer, int32 len)
 {
-	//PacketSessionRef session = GetPacketSessionRef();
-	//PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
-
-	//// TODO : packetId 대역 체크
-	//ClientPacketHandler::HandlePacket(session, buffer, len);
+	/*PacketHeader header = *(reinterpret_cast<PacketHeader*>(&buffer));
+	auto packetId = header.id;
+	PacketHandlerManager::HandlePacket(GetClientSessionRef(), packetId, buffer, len);*/
 }
 
 void ClientSession::OnSend(int32 len)

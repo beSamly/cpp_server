@@ -95,5 +95,4 @@ protected:
 	virtual int32		OnRecv(BYTE* buffer, int32 len) abstract;
 	virtual void		OnSend(int32 len) abstract;
 	virtual void		OnDisconnected() abstract;
-
 };
