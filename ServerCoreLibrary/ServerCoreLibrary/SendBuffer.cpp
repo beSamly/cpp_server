@@ -10,8 +10,15 @@ SendBuffer::SendBuffer( BYTE* buffer, uint32 allocSize)
 {
 }
 
+SendBuffer::SendBuffer(uint32 allocSize)
+{
+	_allocSize = allocSize;
+	_buffer = new BYTE[allocSize];
+}
+
 SendBuffer::~SendBuffer()
 {
+	delete _buffer;
 }
 
 void SendBuffer::Close(uint32 writeSize)

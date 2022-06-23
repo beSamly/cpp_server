@@ -2,6 +2,6 @@
 class InputHandler
 {
 public:
-	void static HandleInput(int32 key);
+	void static HandleInput(SocketClientRef session, int32 key);
 };
 

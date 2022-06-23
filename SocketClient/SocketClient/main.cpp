@@ -25,7 +25,7 @@ int main() {
 			int keyPressed;
 			cout << "Please press button" << endl;
 			std::cin >> keyPressed;
-			InputHandler::HandleInput(keyPressed);
+			InputHandler::HandleInput(socketClient, keyPressed);
 			cout << "Key pressed is " << keyPressed << endl;;
 		}
 	}));

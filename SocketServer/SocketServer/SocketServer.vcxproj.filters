@@ -26,6 +26,9 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{028feb9f-edd0-4016-b652-dbee5c5321ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\NetworkImpl\PacketHandler\Common">
+      <UniqueIdentifier>{1f1201b5-989d-4815-9af3-8ebbebc1a78e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -49,7 +52,7 @@
     <ClCompile Include="protobuf\SearchRequest.pb.cc">
       <Filter>Source Files\Protobuf</Filter>
     </ClCompile>
-    <ClCompile Include="PacketHandlerManager.cpp">
+    <ClCompile Include="PacketManager.cpp">
       <Filter>Source Files\NetworkImpl</Filter>
     </ClCompile>
     <ClCompile Include="LoginHandler.cpp">
@@ -60,6 +63,9 @@
     </ClCompile>
     <ClCompile Include="GlobalVar.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketId.cpp">
+      <Filter>Source Files\NetworkImpl\PacketHandler\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,7 +87,7 @@
     <ClInclude Include="protobuf\SearchRequest.pb.h">
       <Filter>Source Files\Protobuf</Filter>
     </ClInclude>
-    <ClInclude Include="PacketHandlerManager.h">
+    <ClInclude Include="PacketManager.h">
       <Filter>Source Files\NetworkImpl</Filter>
     </ClInclude>
     <ClInclude Include="LoginHandler.h">
@@ -92,6 +98,9 @@
     </ClInclude>
     <ClInclude Include="GlobalVar.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketId.h">
+      <Filter>Source Files\NetworkImpl\PacketHandler\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
-#include "SocketClient.h"
 #include "pch.h"
+#include "SocketClient.h"
 #include "Session.h"
 #include "ServerSession.h"
 #include "SocketUtils.h"
@@ -25,6 +25,10 @@ bool SocketClient::Start()
 		session->SetNetAddress(_netAddress);
 		if (session->Connect() == false)
 			return false;
+
+		if (i == 0) {
+			_serverSession = session;
+		}
 	}
 
 	return true;

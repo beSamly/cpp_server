@@ -1,10 +1,14 @@
 #pragma once
 #include "BaseSocketServer.h"
+#include "ServerSession.h"
 
 class SocketClient : public BaseSocketServer
 {
 public:
-	SocketClient(NetAddress netAddress, int32 maxSessionCount) : BaseSocketServer(maxSessionCount, netAddress) {
+	SessionRef _serverSession;
+
+public:
+ 	SocketClient(NetAddress netAddress, int32 maxSessionCount) : BaseSocketServer(maxSessionCount, netAddress) {
 	};
 	virtual ~SocketClient() {}
 

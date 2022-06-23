@@ -55,6 +55,9 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files\UtilClass</Filter>
     </ClCompile>
+    <ClCompile Include="PacketHeader.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GlobalMacro.h">
@@ -98,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Source Files\UtilClass</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHeader.h">
+      <Filter>Source Files\Network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

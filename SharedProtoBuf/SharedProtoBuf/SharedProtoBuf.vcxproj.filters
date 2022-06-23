@@ -25,7 +25,7 @@
     <ClCompile Include="Protobuf\Player.pb.cc">
       <Filter>Source Files\Protobuf</Filter>
     </ClCompile>
-    <ClCompile Include="Protobuf\SearchRequest.pb.cc">
+    <ClCompile Include="Protobuf\LoginRequest.pb.cc">
       <Filter>Source Files\Protobuf</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,11 +36,11 @@
     <ClInclude Include="Protobuf\Player.pb.h">
       <Filter>Source Files\Protobuf</Filter>
     </ClInclude>
-    <ClInclude Include="Protobuf\SearchRequest.pb.h">
-      <Filter>Source Files\Protobuf</Filter>
-    </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Protobuf\LoginRequest.pb.h">
+      <Filter>Source Files\Protobuf</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -50,7 +50,7 @@
     <None Include="Protobuf\proto_files\Player.proto">
       <Filter>Source Files\Protofiles</Filter>
     </None>
-    <None Include="Protobuf\proto_files\SearchRequest.proto">
+    <None Include="Protobuf\proto_files\LoginRequest.proto">
       <Filter>Source Files\Protofiles</Filter>
     </None>
   </ItemGroup>

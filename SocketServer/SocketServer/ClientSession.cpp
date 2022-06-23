@@ -1,6 +1,7 @@
-#include "pch.h"
 #include "ClientSession.h"
-#include "PacketHandlerManager.h"
+#include "pch.h"
+#include "PacketManager.h"
+#include "PacketHeader.h"
 
 ClientSession::ClientSession()
 {
@@ -11,11 +12,6 @@ ClientSession::~ClientSession()
 {
 	//TODO
 }
-
-//ClientSessionRef ClientSession::GetClientSessionRef()
-//{
-//	return static_pointer_cast<ClientSession>(shared_from_this());
-//}
 
 // [size(2)][id(2)][data....][size(2)][id(2)][data....]
 int32 ClientSession::OnRecv(BYTE* buffer, int32 len)
@@ -66,9 +62,10 @@ void ClientSession::OnDisconnected()
 
 void ClientSession::OnRecvPacket(BYTE* buffer, int32 len)
 {
-	/*PacketHeader header = *(reinterpret_cast<PacketHeader*>(&buffer));
-	auto packetId = header.id;
-	PacketHandlerManager::HandlePacket(GetClientSessionRef(), packetId, buffer, len);*/
+	PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
+	auto packetId = header->id;
+	auto session = this->GetClientSessionRef();
+	GPacketManager->HandlePacket(session, packetId, buffer, len);
 }
 
 void ClientSession::OnSend(int32 len)

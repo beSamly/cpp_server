@@ -14,6 +14,21 @@
     <Filter Include="Source Files\Protobuf\protofiles">
       <UniqueIdentifier>{4f394a30-f2cb-422c-b1c3-cca914e9bd87}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Packet">
+      <UniqueIdentifier>{b931e1a6-08c1-472d-8661-927291bb8d46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Packet\Interface">
+      <UniqueIdentifier>{3f9cbbc6-5f93-448f-bf3f-7167da5ad38c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{589f849f-83b9-419c-a343-2d38b73c215f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Packet\Common">
+      <UniqueIdentifier>{7f002292-a143-4398-be5a-e2de3459c304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Packet\PacketHandler">
+      <UniqueIdentifier>{37a85531-4558-4571-a684-c331ac4bfedf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -32,7 +47,19 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="IPacketHandler.cpp">
+      <Filter>Source Files\Packet\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginResponseHandler.cpp">
+      <Filter>Source Files\Packet\PacketHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketManager.cpp">
+      <Filter>Source Files\Packet\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketId.cpp">
+      <Filter>Source Files\Packet\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,7 +76,19 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="InputHandler.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="IPacketHandler.h">
+      <Filter>Source Files\Packet\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginResponseHandler.h">
+      <Filter>Source Files\Packet\PacketHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketManager.h">
+      <Filter>Source Files\Packet\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketId.h">
+      <Filter>Source Files\Packet\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,6 +10,7 @@ class SendBuffer
 {
 public:
 	SendBuffer(BYTE* buffer, uint32 allocSize);
+	SendBuffer(uint32 allocSize);
 	~SendBuffer();
 
 	BYTE*		Buffer() { return _buffer; }

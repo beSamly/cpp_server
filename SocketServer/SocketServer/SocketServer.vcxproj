@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\ServerCoreLibrary\ServerCoreLibrary;$(SolutionDir)..\SharedProtobuf\SharedProtobuf;$(SolutionDir)..\SharedProtobuf\Library\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\ServerCoreLibrary\ServerCoreLibrary;$(SolutionDir)..\SharedProtobuf\SharedProtobuf\Protobuf;$(SolutionDir)..\SharedProtobuf\Library\Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\SharedProtobuf\Library\;$(SolutionDir)..\Library\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,7 +82,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\ServerCoreLibrary\ServerCoreLibrary;$(SolutionDir)..\SharedProtobuf\SharedProtobuf;$(SolutionDir)..\SharedProtobuf\Library\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\ServerCoreLibrary\ServerCoreLibrary;$(SolutionDir)..\SharedProtobuf\SharedProtobuf\Protobuf;$(SolutionDir)..\SharedProtobuf\Library\Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\SharedProtobuf\Library\;$(SolutionDir)..\Library\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -162,7 +162,8 @@
     <ClCompile Include="IPacketHandler.cpp" />
     <ClCompile Include="LoginHandler.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PacketHandlerManager.cpp" />
+    <ClCompile Include="PacketManager.cpp" />
+    <ClCompile Include="PacketId.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -188,7 +189,8 @@
     <ClInclude Include="GlobalVar.h" />
     <ClInclude Include="IPacketHandler.h" />
     <ClInclude Include="LoginHandler.h" />
-    <ClInclude Include="PacketHandlerManager.h" />
+    <ClInclude Include="PacketManager.h" />
+    <ClInclude Include="PacketId.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="protobuf\EquipItem.pb.h" />
     <ClInclude Include="protobuf\Player.pb.h" />

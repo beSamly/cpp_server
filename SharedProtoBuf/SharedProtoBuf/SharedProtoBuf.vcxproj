@@ -167,11 +167,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Protobuf\Player.pb.cc">
+    <ClCompile Include="Protobuf\LoginRequest.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Protobuf\SearchRequest.pb.cc">
+    <ClCompile Include="Protobuf\Player.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -180,13 +180,13 @@
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Protobuf\EquipItem.pb.h" />
+    <ClInclude Include="Protobuf\LoginRequest.pb.h" />
     <ClInclude Include="Protobuf\Player.pb.h" />
-    <ClInclude Include="Protobuf\SearchRequest.pb.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Protobuf\proto_files\EquipItem.proto" />
     <None Include="Protobuf\proto_files\Player.proto" />
-    <None Include="Protobuf\proto_files\SearchRequest.proto" />
+    <None Include="Protobuf\proto_files\LoginRequest.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
