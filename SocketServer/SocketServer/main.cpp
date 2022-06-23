@@ -8,6 +8,7 @@ int main() {
 	SocketServerRef socketServer = MakeShared<SocketServer>(NetAddress(L"127.0.0.1", 7777), 100);
 	//SocketServer* socketServer = new SocketServer(NetAddress(L"127.0.0.1", 7777), 100);
 	socketServer->Start();
+
 	std::vector<thread>	_threads;
 	for (int32 i = 0; i < 5; i++)
 	{
@@ -62,6 +63,8 @@ int main() {
 		if (t.joinable())
 			t.join();
 	}
+
+
 
 	//// Main Thread
 	//DoWorkerJob(service);

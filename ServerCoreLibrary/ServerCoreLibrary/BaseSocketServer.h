@@ -30,8 +30,6 @@ protected:
 	virtual HANDLE GetHandle() sealed;
 	virtual void HandleIocpEvent(class IocpEvent* iocpEvent, int32 numOfBytes = 0) sealed;
 
-
-
 private:
 	/* 수신 관련 */
 	void RegisterAccept(AcceptEvent* acceptEvent);

@@ -96,7 +96,8 @@ void BaseSocketServer::RegisterAccept(AcceptEvent* acceptEvent)
 		const int32 errorCode = ::WSAGetLastError();
 		if (errorCode != WSA_IO_PENDING)
 		{
-			// 일단 다시 Accept 걸어준다
+			// 일단 다시 Accept 걸어준다		sin_port	24862	unsigned short
+
 			RegisterAccept(acceptEvent);
 		}
 	}

@@ -51,6 +51,7 @@ using std::thread;
 using std::wstring;
 using std::make_shared;
 using std::this_thread::sleep_for;
+using std::string;
 
 template<typename type, typename... Args>
 std::shared_ptr<type> MakeShared(Args&&... args)

@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerCoreLibrary", "..\Ser
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SocketClient", "..\SocketClient\SocketClient\SocketClient.vcxproj", "{C2247C39-0EA8-4532-AD98-371D799F5E7B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SharedProtoBuf", "..\SharedProtoBuf\SharedProtoBuf\SharedProtoBuf.vcxproj", "{D51821A2-7DB1-4783-AA70-09E926CC380F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{C2247C39-0EA8-4532-AD98-371D799F5E7B}.Release|x64.Build.0 = Release|x64
 		{C2247C39-0EA8-4532-AD98-371D799F5E7B}.Release|x86.ActiveCfg = Release|Win32
 		{C2247C39-0EA8-4532-AD98-371D799F5E7B}.Release|x86.Build.0 = Release|Win32
+		{D51821A2-7DB1-4783-AA70-09E926CC380F}.Debug|x64.ActiveCfg = Debug|x64
+		{D51821A2-7DB1-4783-AA70-09E926CC380F}.Debug|x64.Build.0 = Debug|x64
+		{D51821A2-7DB1-4783-AA70-09E926CC380F}.Debug|x86.ActiveCfg = Debug|Win32
+		{D51821A2-7DB1-4783-AA70-09E926CC380F}.Debug|x86.Build.0 = Debug|Win32
+		{D51821A2-7DB1-4783-AA70-09E926CC380F}.Release|x64.ActiveCfg = Release|x64
+		{D51821A2-7DB1-4783-AA70-09E926CC380F}.Release|x64.Build.0 = Release|x64
+		{D51821A2-7DB1-4783-AA70-09E926CC380F}.Release|x86.ActiveCfg = Release|Win32
+		{D51821A2-7DB1-4783-AA70-09E926CC380F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

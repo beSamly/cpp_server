@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Protobuf">
+      <UniqueIdentifier>{f910e9f5-8c1f-4119-9985-855f654e8753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Protofiles">
+      <UniqueIdentifier>{cd5a422c-b0df-45a3-9f34-c3212cb8e4c9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SharedProtoBuf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protobuf\EquipItem.pb.cc">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="Protobuf\Player.pb.cc">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="Protobuf\SearchRequest.pb.cc">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Protobuf\EquipItem.pb.h">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="Protobuf\Player.pb.h">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="Protobuf\SearchRequest.pb.h">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Protobuf\proto_files\EquipItem.proto">
+      <Filter>Source Files\Protofiles</Filter>
+    </None>
+    <None Include="Protobuf\proto_files\Player.proto">
+      <Filter>Source Files\Protofiles</Filter>
+    </None>
+    <None Include="Protobuf\proto_files\SearchRequest.proto">
+      <Filter>Source Files\Protofiles</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -52,6 +52,9 @@
     <ClCompile Include="SocketUtils.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Source Files\UtilClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GlobalMacro.h">
@@ -92,6 +95,9 @@
     </ClInclude>
     <ClInclude Include="SocketUtils.h">
       <Filter>Source Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Source Files\UtilClass</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,6 +5,15 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Source Files\NetworkImpl">
+      <UniqueIdentifier>{b521273e-1916-4cf1-8937-7ed53096f93e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Protobuf">
+      <UniqueIdentifier>{ae3cd922-f0a9-4042-89c3-6ac111cc64f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Protobuf\protofiles">
+      <UniqueIdentifier>{4f394a30-f2cb-422c-b1c3-cca914e9bd87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -13,9 +22,33 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ServerSession.cpp">
+      <Filter>Source Files\NetworkImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketClient.cpp">
+      <Filter>Source Files\NetworkImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalVar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketClient.h">
+      <Filter>Source Files\NetworkImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerSession.h">
+      <Filter>Source Files\NetworkImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalVar.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

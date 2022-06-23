@@ -7,7 +7,7 @@ bool SocketServer::Start()
 {
 	if (StartAccept() == false)
 		return false;
-
+	Log->Info("Server started");
 	return true;
 }
 
@@ -49,11 +49,13 @@ SessionRef SocketServer::CreateSession()
 // BaseSocketServer에서 ProcessAccept() 호출 시에 이벤트 발생
 void SocketServer::OnConnected(SessionRef session)
 {
+	Log->Info("Session connected");
 	AddSession(session);
 }
 
 // Session 에서 ProcessDisconnect() 호출 시에 이벤트 발생
 void SocketServer::OnDisconnected(SessionRef session)
 {
+	Log->Info("Session disconnected");
 	ReleaseSession(session);
 }
