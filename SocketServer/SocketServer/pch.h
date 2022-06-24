@@ -17,5 +17,6 @@
 #include "SocketServer.h"
 #include "Logger.h"
 
+using std::shared_ptr;
 using SocketServerRef = std::shared_ptr<class SocketServer>;
 using ClientSessionRef = std::shared_ptr<class ClientSession>;

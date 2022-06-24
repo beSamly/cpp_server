@@ -158,7 +158,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ClientSession.cpp" />
+    <ClCompile Include="Collection.cpp" />
+    <ClCompile Include="DBConnection.cpp" />
+    <ClCompile Include="DBConnectionPool.cpp" />
+    <ClCompile Include="EquipItem.cpp" />
     <ClCompile Include="GlobalVar.cpp" />
+    <ClCompile Include="IDatabaseData.cpp" />
     <ClCompile Include="IPacketHandler.cpp" />
     <ClCompile Include="LoginHandler.cpp" />
     <ClCompile Include="main.cpp" />
@@ -170,6 +175,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="protobuf\EquipItem.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -186,12 +192,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientSession.h" />
+    <ClInclude Include="Collection.h" />
+    <ClInclude Include="DBConnection.h" />
+    <ClInclude Include="DBConnectionPool.h" />
+    <ClInclude Include="EquipItem.h" />
     <ClInclude Include="GlobalVar.h" />
+    <ClInclude Include="IDatabaseData.h" />
     <ClInclude Include="IPacketHandler.h" />
     <ClInclude Include="LoginHandler.h" />
     <ClInclude Include="PacketManager.h" />
     <ClInclude Include="PacketId.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="protobuf\EquipItem.pb.h" />
     <ClInclude Include="protobuf\Player.pb.h" />
     <ClInclude Include="protobuf\SearchRequest.pb.h" />

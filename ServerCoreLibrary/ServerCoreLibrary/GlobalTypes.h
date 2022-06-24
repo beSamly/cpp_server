@@ -8,6 +8,7 @@
 #include <queue>
 #include <utility>
 #include <set>
+#include <map>
 
 using BYTE = unsigned char;
 using int8 = __int8;
@@ -52,6 +53,7 @@ using std::wstring;
 using std::make_shared;
 using std::this_thread::sleep_for;
 using std::string;
+using String = std::wstring;
 
 template<typename type, typename... Args>
 std::shared_ptr<type> MakeShared(Args&&... args)
@@ -67,8 +69,14 @@ std::shared_ptr<type> MakeShared(Args&&... args)
 template<typename Type>
 using Vector = std::vector<Type>;
 
+template<typename Key, typename Type>
+using Map = std::map<Key, Type>;
+
 template<typename Type, typename Container = std::deque<Type>>
 using Queue = std::queue<Type, Container>;
 
 template<typename Key, typename Pred = std::less<Key>>
 using Set = std::set<Key, Pred>;
+
+template<typename Key, typename Type>
+using MapRef = std::shared_ptr<Map<Key, Type>>;

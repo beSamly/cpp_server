@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "GlobalVar.h"
 #include "Logger.h"
-Logger* Log = nullptr;
+
+Logger* Log;
 
 class CoreGlobal
 {

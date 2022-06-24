@@ -29,6 +29,15 @@
     <Filter Include="Source Files\NetworkImpl\PacketHandler\Common">
       <UniqueIdentifier>{1f1201b5-989d-4815-9af3-8ebbebc1a78e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DB">
+      <UniqueIdentifier>{7b6e4c26-1fce-4ba8-9f0e-f66fdd827bee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DB\Model">
+      <UniqueIdentifier>{83d02aad-49f9-4448-9c95-2f3e82292e74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DB\Connection">
+      <UniqueIdentifier>{48da7653-5c7e-4357-9502-25713867d641}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -67,6 +76,24 @@
     <ClCompile Include="PacketId.cpp">
       <Filter>Source Files\NetworkImpl\PacketHandler\Common</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="Collection.cpp">
+      <Filter>Source Files\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="IDatabaseData.cpp">
+      <Filter>Source Files\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="EquipItem.cpp">
+      <Filter>Source Files\DB\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="DBConnection.cpp">
+      <Filter>Source Files\DB\Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="DBConnectionPool.cpp">
+      <Filter>Source Files\DB\Connection</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -101,6 +128,24 @@
     </ClInclude>
     <ClInclude Include="PacketId.h">
       <Filter>Source Files\NetworkImpl\PacketHandler\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="Collection.h">
+      <Filter>Source Files\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="IDatabaseData.h">
+      <Filter>Source Files\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipItem.h">
+      <Filter>Source Files\DB\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DBConnection.h">
+      <Filter>Source Files\DB\Connection</Filter>
+    </ClInclude>
+    <ClInclude Include="DBConnectionPool.h">
+      <Filter>Source Files\DB\Connection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
