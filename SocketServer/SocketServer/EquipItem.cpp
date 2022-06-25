@@ -1,42 +1,34 @@
 #include "pch.h"
 #include "EquipItem.h"
-#include "DBConnection.h"
+#include "ColumnDataType.h"
+#include "ColumnInfo.h"
 
-MapRef<int32, EquipItem> EquipItem::FindAll(DBConnection* dbConnection, int32 accountId)
+EquipItem::EquipItem(ColumnInfoVector& columnInfo)
 {
-	dbConnection->Unbind();
-	auto query = L"SELECT SlotIndex, EquipItemIndex, CreatedAt FROM [dbo].[EquipItem] WHERE AccountId = (?)";
-
-	int32 slotIndex;
-	int32 equipItemIndex;
-	int32 accountIdOut;
-	TIMESTAMP_STRUCT createdAt;
-	SQLLEN sqllen1 = 0;
-	SQLLEN sqllen2 = 0;
-	SQLLEN sqllen3 = 0;
-	SQLLEN sqllen4 = 0;
-	
-	dbConnection->BindCol(1, &slotIndex, &sqllen1);
-	dbConnection->BindCol(2, &equipItemIndex, &sqllen2);
-	dbConnection->BindCol(3, &createdAt, &sqllen3);
-
-	dbConnection->BindParam(1, &accountId, &sqllen4);
-
-	if (!dbConnection->Execute(query)) {
-		return nullptr;
-	}
-
-	auto mapRef = MakeShared<Map<int32, EquipItem>>();
-
-	while (dbConnection->Fetch())
-	{
-		EquipItem equipItem;
-		equipItem._slotIndex = slotIndex;
-		equipItem._equipItemIndex = equipItemIndex;
-		equipItem._createdAt = createdAt;
-
-		mapRef->insert(std::make_pair(equipItem._slotIndex, equipItem));
-	}
-
-	return mapRef;
+	_accountId = columnInfo.FindValueByColumnName<int32>(L"AccountId");
+	_equipItemIndex = columnInfo.FindValueByColumnName<int32>(L"EquipItemIndex");
+	_slotIndex = columnInfo.FindValueByColumnName<int32>(L"SlotIndex");
+	_createdAt = columnInfo.FindValueByColumnName<TIMESTAMP_STRUCT>(L"CreatedAt");
 }
+
+ColumnInfoVector EquipItem::GetPrimaryKeyInfo()
+{
+	ColumnInfoVector infoVector;
+	infoVector.AddColumnInfo(L"AccountId", ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_accountId)));
+	return infoVector;
+}
+
+ColumnInfoVector EquipItem::GetUpdateInfo()
+{
+	ColumnInfoVector infoVector;
+	infoVector.AddColumnInfo(L"SlotIndex", ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_slotIndex)));
+	infoVector.AddColumnInfo(L"EquipItemIndex", ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_equipItemIndex)));
+	infoVector.AddColumnInfo(L"CreatedAt", ColumnDataType::TIMESTAMP_STRUCT, static_pointer_cast<void>(MakeShared<TIMESTAMP_STRUCT>(_createdAt)));
+	return infoVector;
+}
+
+int32 EquipItem::GetUniqueKey() {
+	return _slotIndex;
+}
+
+

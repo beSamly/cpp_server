@@ -5,20 +5,19 @@ class Collection
 public:
 	T Find(int32 key);
 	T Remove(int32 key);
-	T Add(int32 key, T& t);
+	void Add(int32 key, T t);
 	void SetData(MapRef<int32, T> collectoin);
 private:
-	MapRef<int32, T> _collection;
+	MapRef<int32, T> _collection = MakeShared<Map<int32, T>>();
 	Vector<int32> _updatedIndices;
 	Vector<int32> _addedIndices;
 };
 
 template<typename T>
-T Collection<T>::Add(int32 key,T& t)
+void Collection<T>::Add(int32 key,T t)
 {
-	_collection.insert(key, t);
+	_collection->insert(std::make_pair(key, t));
 	_addedIndices.push_back(key);
-	return;
 }
 
 template<typename T>

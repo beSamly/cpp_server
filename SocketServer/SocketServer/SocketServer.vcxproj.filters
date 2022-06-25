@@ -38,6 +38,12 @@
     <Filter Include="Source Files\DB\Connection">
       <UniqueIdentifier>{48da7653-5c7e-4357-9502-25713867d641}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DB\BaseModel">
+      <UniqueIdentifier>{8800a7a7-2110-49d7-aad5-1ebcdc9c36dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DB\ModelInfo">
+      <UniqueIdentifier>{b5418ef8-000a-4d6b-b397-242e74b86e90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -82,9 +88,6 @@
     <ClCompile Include="Collection.cpp">
       <Filter>Source Files\DB</Filter>
     </ClCompile>
-    <ClCompile Include="IDatabaseData.cpp">
-      <Filter>Source Files\DB</Filter>
-    </ClCompile>
     <ClCompile Include="EquipItem.cpp">
       <Filter>Source Files\DB\Model</Filter>
     </ClCompile>
@@ -93,6 +96,15 @@
     </ClCompile>
     <ClCompile Include="DBConnectionPool.cpp">
       <Filter>Source Files\DB\Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="DBModel.cpp">
+      <Filter>Source Files\DB\BaseModel</Filter>
+    </ClCompile>
+    <ClCompile Include="ColumnInfo.cpp">
+      <Filter>Source Files\DB\ModelInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="ColumnDataType.cpp">
+      <Filter>Source Files\DB\ModelInfo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,9 +147,6 @@
     <ClInclude Include="Collection.h">
       <Filter>Source Files\DB</Filter>
     </ClInclude>
-    <ClInclude Include="IDatabaseData.h">
-      <Filter>Source Files\DB</Filter>
-    </ClInclude>
     <ClInclude Include="EquipItem.h">
       <Filter>Source Files\DB\Model</Filter>
     </ClInclude>
@@ -146,6 +155,15 @@
     </ClInclude>
     <ClInclude Include="DBConnectionPool.h">
       <Filter>Source Files\DB\Connection</Filter>
+    </ClInclude>
+    <ClInclude Include="DBModel.h">
+      <Filter>Source Files\DB\BaseModel</Filter>
+    </ClInclude>
+    <ClInclude Include="ColumnInfo.h">
+      <Filter>Source Files\DB\ModelInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="ColumnDataType.h">
+      <Filter>Source Files\DB\ModelInfo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,8 @@
 #include "EquipItem.h"
 
 void Player::LoadPlayerFromDB(DBConnection* connection){
-	equipItemCollection.SetData(EquipItem::FindAll(connection, _accountId));
+	equipItemCollection = EquipItem::FindAll(connection, _accountId);
+	//equipItemCollection.SetData(EquipItem::FindAll(connection, _accountId));
 };
 
 Player::~Player(){}

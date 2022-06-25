@@ -60,7 +60,7 @@ bool DBConnection::Execute(const WCHAR* query)
 }
 
 bool DBConnection::Fetch()
-{
+ {
 	SQLRETURN ret = ::SQLFetch(_statement);
 
 	switch (ret)

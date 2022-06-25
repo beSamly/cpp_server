@@ -11,7 +11,7 @@ public:
 private:
 	int32 _accountId;
 public:
-	Collection<EquipItem> equipItemCollection;
+	CollectionRef<EquipItem> equipItemCollection;
 public:
 	void LoadPlayerFromDB(DBConnection* connection);
 };
