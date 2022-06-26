@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package Protocol;
+
+message BuyEquipItem{
+	uint64 EquipItemIndex = 1;
+}

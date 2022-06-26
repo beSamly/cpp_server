@@ -98,7 +98,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,7 +132,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -159,6 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BreakEquipItem.cpp" />
+    <ClCompile Include="BuyEquipItem.cpp" />
     <ClCompile Include="ClientSession.cpp" />
     <ClCompile Include="Collection.cpp" />
     <ClCompile Include="ColumnDataType.cpp" />
@@ -169,7 +171,7 @@
     <ClCompile Include="GlobalVar.cpp" />
     <ClCompile Include="DBModel.cpp" />
     <ClCompile Include="IPacketHandler.cpp" />
-    <ClCompile Include="LoginHandler.cpp" />
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PacketId.cpp" />
     <ClCompile Include="PacketManager.cpp" />
@@ -180,21 +182,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="protobuf\EquipItem.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="protobuf\Player.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="protobuf\SearchRequest.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="SocketServer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BreakEquipItem.h" />
+    <ClInclude Include="BuyEquipItem.h" />
     <ClInclude Include="ClientSession.h" />
     <ClInclude Include="Collection.h" />
     <ClInclude Include="ColumnDataType.h" />
@@ -205,20 +197,12 @@
     <ClInclude Include="GlobalVar.h" />
     <ClInclude Include="DBModel.h" />
     <ClInclude Include="IPacketHandler.h" />
-    <ClInclude Include="LoginHandler.h" />
+    <ClInclude Include="Login.h" />
     <ClInclude Include="PacketId.h" />
     <ClInclude Include="PacketManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="protobuf\EquipItem.pb.h" />
-    <ClInclude Include="protobuf\Player.pb.h" />
-    <ClInclude Include="protobuf\SearchRequest.pb.h" />
     <ClInclude Include="SocketServer.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="protobuf\proto_files\EquipItem.proto" />
-    <None Include="protobuf\proto_files\Player.proto" />
-    <None Include="protobuf\proto_files\SearchRequest.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

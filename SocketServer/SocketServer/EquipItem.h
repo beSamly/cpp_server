@@ -13,6 +13,18 @@ public:
 
 public:
 	EquipItem(ColumnInfoVector& columnInfo);
+	EquipItem(int32 accountId, int32 slotIndx, int32 equipItemIndex) : _accountId(accountId), _slotIndex(slotIndx), _equipItemIndex(equipItemIndex) {
+		// TImeStampHelper »ý¼º
+		TIMESTAMP_STRUCT now;
+		now.fraction = 0;
+		now.hour = 0;
+		now.minute = 0;
+		now.second = 0;
+		now.year = 2022;
+		now.month = 11;
+		now.day = 13;
+		_createdAt = now;
+	};
 	EquipItem() = default;
 
 public:

@@ -1,6 +1,5 @@
 #pragma once
 #include "IPacketHandler.h"
-#include "LoginHandler.h"
 #include "ClientSession.h"
 
 bool Handle_INVALID(ClientSessionRef& session, BYTE* buffer, int32 len);

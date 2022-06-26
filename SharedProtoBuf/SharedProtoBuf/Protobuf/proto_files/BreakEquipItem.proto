@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package Protocol;
+
+message BreakEquipItem{
+	uint64 SlotIndex = 1;
+}

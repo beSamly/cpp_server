@@ -25,6 +25,12 @@
     <ClCompile Include="Protobuf\LoginRequest.pb.cc">
       <Filter>Source Files\Protobuf</Filter>
     </ClCompile>
+    <ClCompile Include="Protobuf\BuyEquipItem.pb.cc">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="Protobuf\BreakEquipItem.pb.cc">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Protobuf\EquipItem.pb.h">
@@ -36,6 +42,12 @@
     <ClInclude Include="Protobuf\LoginRequest.pb.h">
       <Filter>Source Files\Protobuf</Filter>
     </ClInclude>
+    <ClInclude Include="Protobuf\BuyEquipItem.pb.h">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="Protobuf\BreakEquipItem.pb.h">
+      <Filter>Source Files\Protobuf</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Protobuf\proto_files\EquipItem.proto">
@@ -45,6 +57,12 @@
       <Filter>Source Files\Protofiles</Filter>
     </None>
     <None Include="Protobuf\proto_files\LoginRequest.proto">
+      <Filter>Source Files\Protofiles</Filter>
+    </None>
+    <None Include="Protobuf\proto_files\BuyEquipItem.proto">
+      <Filter>Source Files\Protofiles</Filter>
+    </None>
+    <None Include="Protobuf\proto_files\BreakEquipItem.proto">
       <Filter>Source Files\Protofiles</Filter>
     </None>
   </ItemGroup>

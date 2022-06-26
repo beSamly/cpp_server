@@ -32,12 +32,14 @@ ColumnInfoVector EquipItem::GetPrimaryKeyInfo()
 {
 	ColumnInfoVector infoVector;
 	infoVector.AddColumnInfo(ACCOUNT_ID, ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_accountId)));
+	infoVector.AddColumnInfo(SLOT_INDEX, ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_slotIndex)));
 	return infoVector;
 };
 
 ColumnInfoVector EquipItem::GetUpdateInfo()
 {
 	ColumnInfoVector infoVector;
+	infoVector.AddColumnInfo(ACCOUNT_ID, ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_accountId)));
 	infoVector.AddColumnInfo(SLOT_INDEX, ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_slotIndex)));
 	infoVector.AddColumnInfo(EQUIP_ITEM_INDEX, ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_equipItemIndex)));
 	infoVector.AddColumnInfo(CREATED_AT, ColumnDataType::TIMESTAMP_STRUCT, static_pointer_cast<void>(MakeShared<TIMESTAMP_STRUCT>(_createdAt)));
