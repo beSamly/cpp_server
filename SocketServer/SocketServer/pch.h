@@ -27,3 +27,5 @@ using ColumnInfoRef = std::shared_ptr<class ColumnInfo>;
 
 template<typename T>
 using CollectionRef = std::shared_ptr<class Collection<T>>;
+
+using PlayerRef = std::shared_ptr<class Player>;

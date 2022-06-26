@@ -3,6 +3,9 @@
 #include "ColumnInfo.h"
 #include "Collection.h"
 
+//template<typename TName>
+//using CollectionRef = std::shared_ptr<class Collection<TName>>;
+
 template<typename T>
 class DBModel
 {
@@ -12,7 +15,6 @@ public:
 	virtual ColumnInfoVector GetUpdateInfo() abstract;
 
 public:
-	//static MapRef<int32, T> FindAll(DBConnection* dbConnection, int32 accountId) {
 	static CollectionRef<T> FindAll(DBConnection* dbConnection, int32 accountId) {
 		dbConnection->Unbind();
 
@@ -26,7 +28,6 @@ public:
 		int32 count = 1;
 		SQLLEN sqllen = 0;
 
-
 		for (const ColumnInfo& columnInfo : columnInfo._vector)
 		{
 			auto columnName = columnInfo._columnName;
@@ -35,43 +36,30 @@ public:
 			columnNames += (columnName + L",");
 
 			switch (dataType) {
-			case ColumnDataType::int32: {
+			case ColumnDataType::int32:
 				dbConnection->BindCol(count, static_pointer_cast<int32>(columnInfo._columnValuePtr).get(), &sqllen);
-			}
-			break;
-
+				break;
 			case ColumnDataType::TIMESTAMP_STRUCT:
-			{
 				dbConnection->BindCol(count, static_pointer_cast<TIMESTAMP_STRUCT>(columnInfo._columnValuePtr).get(), &sqllen);
-			}
-			break;
+				break;
 			}
 			count++;
 		}
 
 		columnNames = columnNames.substr(0, columnNames.size() - 1);
-		String fullQuery = (prefix + columnNames + L" FROM [dbo].[" + tableName + L"]" + L" WHERE AccountId = (?)");
+		String query = (prefix + columnNames + L" FROM [dbo].[" + tableName + L"]" + L" WHERE AccountId = (?)");
 
-		//int32 slotIndex;
-		//int32 equipItemIndex;
-		//int32 accountIdOut;
-		//TIMESTAMP_STRUCT createdAt;
-		//SQLLEN sqllen1 = 0;
-		//SQLLEN sqllen2 = 0;
-		//SQLLEN sqllen3 = 0;
-		//SQLLEN sqllen4 = 0;
-
-		//dbConnection->BindCol(1, &slotIndex, &sqllen1);
-		//dbConnection->BindCol(2, &equipItemIndex, &sqllen2);
-		//dbConnection->BindCol(3, &createdAt, &sqllen3);
-
+		/*-------------------------
+		|	Binding Parameter     |
+		--------------------------*/
 		SQLLEN accountLen = 0;
 		dbConnection->BindParam(1, &accountId, &accountLen);
 
-
+		/*---------------------------------
+		|	Execute query and fetch data  |
+		----------------------------------*/
 		auto collection = MakeShared<Collection<T>>();
-
-		if (!dbConnection->Execute(fullQuery.c_str())) {
+		if (!dbConnection->Execute(query.c_str())) {
 			return collection;
 			//return nullptr;
 		}
@@ -81,17 +69,9 @@ public:
 			T data(columnInfo);
 			collection->Add(data.GetUniqueKey(), data);
 		}
-		
+
 		return collection;
-	}
-
-	/*public void Save() {
-
 	};
-
-	public void Delete() {
-
-	}*/
 
 	/*MapRef<int32, T> FindAllArch(DBConnection* dbConnection, int32 accountId) {
 		dbConnection->Unbind();
@@ -130,7 +110,5 @@ public:
 
 		return mapRef;
 	}*/
-
-	//static String GetSelectQuery() virtual;
 };
 

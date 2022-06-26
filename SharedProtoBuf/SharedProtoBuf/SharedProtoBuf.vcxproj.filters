@@ -22,18 +22,12 @@
     <ClCompile Include="Protobuf\EquipItem.pb.cc">
       <Filter>Source Files\Protobuf</Filter>
     </ClCompile>
-    <ClCompile Include="Protobuf\Player.pb.cc">
-      <Filter>Source Files\Protobuf</Filter>
-    </ClCompile>
     <ClCompile Include="Protobuf\LoginRequest.pb.cc">
       <Filter>Source Files\Protobuf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Protobuf\EquipItem.pb.h">
-      <Filter>Source Files\Protobuf</Filter>
-    </ClInclude>
-    <ClInclude Include="Protobuf\Player.pb.h">
       <Filter>Source Files\Protobuf</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">

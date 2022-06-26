@@ -1,7 +1,11 @@
 #include "pch.h"
 #include "Player.h"
-#include "Collection.h"
 #include "EquipItem.h"
+
+int32 Player::GetAccountId()
+{
+	return _accountId;
+}
 
 void Player::LoadPlayerFromDB(DBConnection* connection){
 	equipItemCollection = EquipItem::FindAll(connection, _accountId);

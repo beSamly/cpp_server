@@ -2,7 +2,7 @@
 #include "ColumnInfo.h"
 #include "ColumnDataType.h"
 
-void ColumnInfoVector::AddColumnInfo(String columnName, ColumnDataType dataType, shared_ptr<void> columnValuePtr) {
+void ColumnInfoVector::AddColumnInfo(String columnName, ColumnDataType dataType, std::shared_ptr<void> columnValuePtr) {
 	ColumnInfo info(columnName, dataType, columnValuePtr);
 	_vector.push_back(info);
 }

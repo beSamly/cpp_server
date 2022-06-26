@@ -16,11 +16,11 @@ void LoginHandler::HandlePacket(ClientSessionRef& session, BYTE* buffer, int32 l
 	// TODO find account from db
 
 	// TODO load player
-
-	// TODO add player to clientSession
-	shared_ptr<Player> playerRef = MakeShared<Player>(1);
+	PlayerRef player = MakeShared<Player>(1);
 	auto connection = ConnectionPool->Pop();
-	playerRef->LoadPlayerFromDB(connection);
+	player->LoadPlayerFromDB(connection);
 	ConnectionPool->Push(connection);
 
+	// TODO add player to clientSession
+	session->SetPlayer(player);
 }

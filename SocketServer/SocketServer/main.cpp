@@ -2,7 +2,6 @@
 #include <iostream>
 #include "SocketServer.h"
 #include "SendBuffer.h"
-#include "Player.pb.h"
 
 int main() {
 	SocketServerRef socketServer = MakeShared<SocketServer>(NetAddress(L"127.0.0.1", 7777), 100);

@@ -1,5 +1,4 @@
 #pragma once
-#include "Collection.h"
 #include "EquipItem.h"
 #include "DBConnection.h"
 
@@ -13,6 +12,7 @@ private:
 public:
 	CollectionRef<EquipItem> equipItemCollection;
 public:
+	int32 GetAccountId();
 	void LoadPlayerFromDB(DBConnection* connection);
 };
 

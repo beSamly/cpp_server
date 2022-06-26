@@ -44,6 +44,9 @@
     <Filter Include="Source Files\DB\ModelInfo">
       <UniqueIdentifier>{b5418ef8-000a-4d6b-b397-242e74b86e90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{a97dda10-70a5-4135-9dac-8168156654ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -66,9 +69,6 @@
     </ClCompile>
     <ClCompile Include="protobuf\SearchRequest.pb.cc">
       <Filter>Source Files\Protobuf</Filter>
-    </ClCompile>
-    <ClCompile Include="PacketManager.cpp">
-      <Filter>Source Files\NetworkImpl</Filter>
     </ClCompile>
     <ClCompile Include="LoginHandler.cpp">
       <Filter>Source Files\NetworkImpl\PacketHandler\Auth</Filter>
@@ -106,6 +106,9 @@
     <ClCompile Include="ColumnDataType.cpp">
       <Filter>Source Files\DB\ModelInfo</Filter>
     </ClCompile>
+    <ClCompile Include="PacketManager.cpp">
+      <Filter>Source Files\NetworkImpl\PacketHandler\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -125,9 +128,6 @@
     </ClInclude>
     <ClInclude Include="protobuf\SearchRequest.pb.h">
       <Filter>Source Files\Protobuf</Filter>
-    </ClInclude>
-    <ClInclude Include="PacketManager.h">
-      <Filter>Source Files\NetworkImpl</Filter>
     </ClInclude>
     <ClInclude Include="LoginHandler.h">
       <Filter>Source Files\NetworkImpl\PacketHandler\Auth</Filter>
@@ -164,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="ColumnDataType.h">
       <Filter>Source Files\DB\ModelInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketManager.h">
+      <Filter>Source Files\NetworkImpl\PacketHandler\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

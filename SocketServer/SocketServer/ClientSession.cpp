@@ -1,5 +1,5 @@
-#include "ClientSession.h"
 #include "pch.h"
+#include "ClientSession.h"
 #include "PacketManager.h"
 #include "PacketHeader.h"
 
@@ -11,6 +11,11 @@ ClientSession::ClientSession()
 ClientSession::~ClientSession()
 {
 	//TODO
+}
+
+ClientSessionRef ClientSession::GetClientSessionRef()
+{
+	return static_pointer_cast<ClientSession>(shared_from_this());
 }
 
 // [size(2)][id(2)][data....][size(2)][id(2)][data....]
@@ -70,4 +75,14 @@ void ClientSession::OnRecvPacket(BYTE* buffer, int32 len)
 
 void ClientSession::OnSend(int32 len)
 {
+}
+
+PlayerRef ClientSession::GetPlayer()
+{
+	return _player;
+}
+
+void ClientSession::SetPlayer(PlayerRef player)
+{
+	_player = player;
 }

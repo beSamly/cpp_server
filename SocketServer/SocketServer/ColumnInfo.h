@@ -2,23 +2,21 @@
 #include <sqltypes.h>
 #include "ColumnDataType.h"
 
-using std::shared_ptr;
-
 class ColumnInfo {
 public:
 	String _columnName;
 	ColumnDataType _dataType;
-	shared_ptr<void> _columnValuePtr;
+	std::shared_ptr<void> _columnValuePtr;
 
 public:
-	ColumnInfo(String columnName, ColumnDataType dataType, shared_ptr<void> columnValuePtr = nullptr) : _columnName(columnName), _dataType(dataType), _columnValuePtr(columnValuePtr) {
+	ColumnInfo(String columnName, ColumnDataType dataType, std::shared_ptr<void> columnValuePtr = nullptr) : _columnName(columnName), _dataType(dataType), _columnValuePtr(columnValuePtr) {
 	};
 };
 
 class ColumnInfoVector {
 public:
 	Vector<ColumnInfo> _vector;
-	void AddColumnInfo(String columnName, ColumnDataType dataType, shared_ptr<void> columnValuePtr = nullptr);
+	void AddColumnInfo(String columnName, ColumnDataType dataType, std::shared_ptr<void> columnValuePtr = nullptr);
 	ColumnInfo Find(String columnName);
 
 	template<typename T>

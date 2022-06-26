@@ -171,17 +171,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Protobuf\Player.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="SharedProtoBuf.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Protobuf\EquipItem.pb.h" />
     <ClInclude Include="Protobuf\LoginRequest.pb.h" />
-    <ClInclude Include="Protobuf\Player.pb.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Protobuf\proto_files\EquipItem.proto" />
