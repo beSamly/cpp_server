@@ -54,7 +54,7 @@ void DBConnectionPool::Clear()
 	_connections.clear();
 }
 
-DBConnection* DBConnectionPool::Pop()
+DBConnectionGaurdRef DBConnectionPool::Pop()
 {
 	WRITE_LOCK;
 
@@ -63,11 +63,16 @@ DBConnection* DBConnectionPool::Pop()
 
 	DBConnection* connection = _connections.back();
 	_connections.pop_back();
-	return connection;
+	connection->Unbind();
+	return MakeShared<DBConnectionGaurd>(connection);
 }
 
 void DBConnectionPool::Push(DBConnection* connection)
 {
 	WRITE_LOCK;
 	_connections.push_back(connection);
+}
+
+DBConnectionGaurd::~DBConnectionGaurd() {
+	ConnectionPool->Push(dbConnection);
 }

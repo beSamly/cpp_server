@@ -1,2 +1,5 @@
 #include "pch.h"
 #include "DBModel.h"
+#include "DBConnection.h"
+#include "ColumnInfo.h"
+#include "Collection.h"

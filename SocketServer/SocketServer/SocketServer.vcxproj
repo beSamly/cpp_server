@@ -168,9 +168,13 @@
     <ClCompile Include="DBConnection.cpp" />
     <ClCompile Include="DBConnectionPool.cpp" />
     <ClCompile Include="EquipItem.cpp" />
+    <ClCompile Include="GlobalJobQueue.cpp" />
     <ClCompile Include="GlobalVar.cpp" />
     <ClCompile Include="DBModel.cpp" />
     <ClCompile Include="IPacketHandler.cpp" />
+    <ClCompile Include="Job.cpp" />
+    <ClCompile Include="JobQueue.cpp" />
+    <ClCompile Include="JobTimer.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PacketId.cpp" />
@@ -182,7 +186,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="RunInterval.cpp" />
     <ClCompile Include="SocketServer.cpp" />
+    <ClCompile Include="ThreadManager.cpp" />
+    <ClCompile Include="TLS.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BreakEquipItem.h" />
@@ -194,15 +202,23 @@
     <ClInclude Include="DBConnection.h" />
     <ClInclude Include="DBConnectionPool.h" />
     <ClInclude Include="EquipItem.h" />
+    <ClInclude Include="GlobalJobQueue.h" />
     <ClInclude Include="GlobalVar.h" />
     <ClInclude Include="DBModel.h" />
     <ClInclude Include="IPacketHandler.h" />
+    <ClInclude Include="Job.h" />
+    <ClInclude Include="JobQueue.h" />
+    <ClInclude Include="JobTimer.h" />
     <ClInclude Include="Login.h" />
     <ClInclude Include="PacketId.h" />
     <ClInclude Include="PacketManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="RunInterval.h" />
     <ClInclude Include="SocketServer.h" />
+    <ClInclude Include="ThreadManager.h" />
+    <ClInclude Include="TLS.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

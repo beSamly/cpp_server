@@ -4,6 +4,7 @@
 #include "DBConnectionPool.h"
 #include "PacketHeader.h"
 #include "BuyEquipItem.pb.h"
+#include "ClientSession.h"
 
 void PacketHandler::BuyEquipItem::HandlePacket(ClientSessionRef& session, BYTE* buffer, int32 len)
 {
@@ -15,8 +16,4 @@ void PacketHandler::BuyEquipItem::HandlePacket(ClientSessionRef& session, BYTE* 
 	auto equipItemIndex = pkt.equipitemindex();
 	auto player = session->GetPlayer();
 	EquipItem equipItem = player->AddEquipItem(equipItemIndex);
-
-	auto connection = ConnectionPool->Pop();
-	equipItem.Save(connection);
-	ConnectionPool->Push(connection);
 }

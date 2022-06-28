@@ -14,5 +14,3 @@
 #include <mswsock.h>
 #include <ws2tcpip.h>
 #include <windows.h>
-
-

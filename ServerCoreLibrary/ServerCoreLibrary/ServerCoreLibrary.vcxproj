@@ -163,6 +163,7 @@
     <ClCompile Include="GlobalPch.cpp" />
     <ClCompile Include="IocpCore.cpp" />
     <ClCompile Include="IocpEvent.cpp" />
+    <ClCompile Include="LockQueue.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="NetAddress.cpp" />
     <ClCompile Include="PacketHeader.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="GlobalTypes.h" />
     <ClInclude Include="IocpCore.h" />
     <ClInclude Include="IocpEvent.h" />
+    <ClInclude Include="LockQueue.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="NetAddress.h" />
     <ClInclude Include="PacketHeader.h" />

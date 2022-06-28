@@ -13,10 +13,11 @@ public:
 	CollectionRef<EquipItem> equipItemCollection;
 public:
 	int32 GetAccountId();
-	void LoadPlayerFromDB(DBConnection* connection);
+	void LoadPlayerFromDB();
+	void Update();
 
 public:
 	EquipItem AddEquipItem(int32 equipItemIndex);
-	EquipItem RemoveEquipItem(int32 slotIndex);
+	bool RemoveEquipItem(int32 slotIndex);
 };
 

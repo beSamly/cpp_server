@@ -9,6 +9,7 @@
 #include <utility>
 #include <set>
 #include <map>
+#include <stack>
 
 using BYTE = unsigned char;
 using int8 = __int8;
@@ -31,11 +32,10 @@ using LockGuard = std::lock_guard<std::mutex>;
 using IocpCoreRef = std::shared_ptr<class IocpCore>;
 using IocpObjectRef = std::shared_ptr<class IocpObject>;
 using SessionRef = std::shared_ptr<class Session>;
-	
 using BaseSocketServerRef = std::shared_ptr<class BaseSocketServer>;
-
 using SendBufferRef = std::shared_ptr<class SendBuffer>;
 using SendBufferChunkRef = std::shared_ptr<class SendBufferChunk>;
+
 
 #define size16(val)		static_cast<int16>(sizeof(val))
 #define size32(val)		static_cast<int32>(sizeof(val))
@@ -64,7 +64,6 @@ std::shared_ptr<type> MakeShared(Args&&... args)
 }
 
 
-
 //Container
 template<typename Type>
 using Vector = std::vector<Type>;
@@ -80,3 +79,6 @@ using Set = std::set<Key, Pred>;
 
 template<typename Key, typename Type>
 using MapRef = std::shared_ptr<Map<Key, Type>>;
+
+template<typename Type, typename Container = Vector<Type>, typename Pred = std::less<typename Container::value_type>>
+using PriorityQueue = std::priority_queue<Type, Container, Pred>;

@@ -58,4 +58,3 @@ private:
 	SQLHDBC			_connection = SQL_NULL_HANDLE;
 	SQLHSTMT		_statement = SQL_NULL_HANDLE;
 };
-

@@ -2,6 +2,8 @@
 #include <memory>
 #include <string>
 #include <format>
+#include <functional>
+#include <concepts>
 
 #ifdef _DEBUG
 #pragma comment(lib, "Protobuf\\Debug\\libprotobufd.lib")
@@ -13,6 +15,7 @@
 #pragma comment(lib, "ServerCoreLibrary\\Release\\SharedProtobuf.lib")
 #endif
 
+#include "TLS.h"
 #include "GlobalVar.h"
 #include "GlobalPch.h"
 #include "ClientSession.h"
@@ -22,11 +25,19 @@
 #include "Collection.h"
 
 using std::shared_ptr;
+using std::function;
+using std::vector;
 using SocketServerRef = std::shared_ptr<class SocketServer>;
 using ClientSessionRef = std::shared_ptr<class ClientSession>;
 using ColumnInfoRef = std::shared_ptr<class ColumnInfo>;
+using JobQueueRef = std::shared_ptr<class JobQueue>;
+using JobRef = std::shared_ptr<class Job>;
+using JobDataRef = std::shared_ptr<class JobData>;
+using CallbackType = std::function<void()>;
 
 template<typename T>
 using CollectionRef = std::shared_ptr<class Collection<T>>;
 
 using PlayerRef = std::shared_ptr<class Player>;
+using DBConnectionGaurdRef = std::shared_ptr<class DBConnectionGaurd>;
+

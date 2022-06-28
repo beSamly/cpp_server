@@ -5,7 +5,7 @@
 
 class EquipItem : public DBModel<EquipItem>
 {
-public:
+private:
 	int32				_accountId;
 	int32				_slotIndex;
 	int32				_equipItemIndex;
