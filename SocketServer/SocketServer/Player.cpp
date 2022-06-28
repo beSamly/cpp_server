@@ -16,12 +16,17 @@ void Player::Update()
 	equipItemCollection->Update();
 }
 
-EquipItem Player::AddEquipItem(int32 equipItemIndex)
+EquipItemRef Player::AddEquipItem(int32 equipItemIndex)
 {
 	int32 slotIndex = 14;
-	EquipItem newItem(_accountId, slotIndex, equipItemIndex);
+	auto newItem = MakeShared<EquipItem>(_accountId, slotIndex, equipItemIndex);
 	equipItemCollection->Add(slotIndex, newItem);
 	return newItem;
+}
+
+EquipItemRef Player::GetEquipItem(int32 slotIndex)
+{
+	return equipItemCollection->Find(slotIndex);
 }
 
 bool Player::RemoveEquipItem(int32 slotIndex)

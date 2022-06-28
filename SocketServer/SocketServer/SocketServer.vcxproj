@@ -167,6 +167,7 @@
     <ClCompile Include="ColumnInfo.cpp" />
     <ClCompile Include="DBConnection.cpp" />
     <ClCompile Include="DBConnectionPool.cpp" />
+    <ClCompile Include="DBQueryHelper.cpp" />
     <ClCompile Include="EquipItem.cpp" />
     <ClCompile Include="GlobalJobQueue.cpp" />
     <ClCompile Include="GlobalVar.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="SocketServer.cpp" />
     <ClCompile Include="ThreadManager.cpp" />
     <ClCompile Include="TLS.cpp" />
+    <ClCompile Include="UpgradeEquipItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BreakEquipItem.h" />
@@ -201,6 +203,7 @@
     <ClInclude Include="ColumnInfo.h" />
     <ClInclude Include="DBConnection.h" />
     <ClInclude Include="DBConnectionPool.h" />
+    <ClInclude Include="DBQueryHelper.h" />
     <ClInclude Include="EquipItem.h" />
     <ClInclude Include="GlobalJobQueue.h" />
     <ClInclude Include="GlobalVar.h" />
@@ -219,6 +222,7 @@
     <ClInclude Include="SocketServer.h" />
     <ClInclude Include="ThreadManager.h" />
     <ClInclude Include="TLS.h" />
+    <ClInclude Include="UpgradeEquipItem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

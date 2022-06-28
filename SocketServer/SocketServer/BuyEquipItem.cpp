@@ -15,5 +15,5 @@ void PacketHandler::BuyEquipItem::HandlePacket(ClientSessionRef& session, BYTE* 
 
 	auto equipItemIndex = pkt.equipitemindex();
 	auto player = session->GetPlayer();
-	EquipItem equipItem = player->AddEquipItem(equipItemIndex);
+	EquipItemRef equipItem = player->AddEquipItem(equipItemIndex);
 }

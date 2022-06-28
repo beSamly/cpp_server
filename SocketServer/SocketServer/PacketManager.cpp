@@ -5,6 +5,7 @@
 #include "Login.h"
 #include "BuyEquipItem.h"
 #include "BreakEquipItem.h"
+#include "UpgradeEquipItem.h"
 
 bool Handle_INVALID(ClientSessionRef& session, BYTE* buffer, int32 len)
 {
@@ -27,6 +28,7 @@ void PacketManager::Init() {
 	_handlers[PacketId::LOGIN_REQ] = dynamic_cast<IPacketHandler*>(new PacketHandler::Login());
 	_handlers[PacketId::BUY_EQUIP_ITEM] = dynamic_cast<IPacketHandler*>(new PacketHandler::BuyEquipItem());
 	_handlers[PacketId::BREAK_EQUIP_ITEM] = dynamic_cast<IPacketHandler*>(new PacketHandler::BreakEquipItem());
+	_handlers[PacketId::UPGRADE_EQUIP_ITEM] = dynamic_cast<IPacketHandler*>(new PacketHandler::UpgradeEquipItem());
 
 	//[](ClientSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::LOGIN_REQ>(Handle_LOGIN_REQ, session, buffer, len); };
 }

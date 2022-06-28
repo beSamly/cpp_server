@@ -25,6 +25,18 @@ public:
 		auto ptr = static_pointer_cast<T>(info._columnValuePtr);
 		return *ptr;
 	}
+
+	Vector<String> ExtractKeyNames() {
+		Vector<String> columnNames;
+		for (const ColumnInfo& info : _vector) {
+			columnNames.push_back(info._columnName);
+		}
+		return columnNames;
+	}
+
+	void Concat(ColumnInfoVector& target) {
+		_vector.insert(_vector.end(), target._vector.begin(), target._vector.end());
+	}
 };
 
 //class ColumnInfo

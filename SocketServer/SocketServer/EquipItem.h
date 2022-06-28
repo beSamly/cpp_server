@@ -9,6 +9,7 @@ private:
 	int32				_accountId;
 	int32				_slotIndex;
 	int32				_equipItemIndex;
+	int32				_star;
 	TIMESTAMP_STRUCT	_createdAt;
 
 public:
@@ -28,9 +29,14 @@ public:
 	EquipItem() = default;
 
 public:
+	/* Getter Setter */
+	int32 GetStar() { DBModel::MarkAsUpdated(); return _star; };
+	void SetStar(int32 star) { _star = star; };
+
+public:
 	/* 인터페이스 구현 */
-	ColumnInfoVector	GetPrimaryKeyInfo();
 	ColumnInfoVector	GetUpdateInfo();
+	ColumnInfoVector	GetPrimaryKeyInfo();
 	int32				GetUniqueKey();
 
 	/* Static methods */

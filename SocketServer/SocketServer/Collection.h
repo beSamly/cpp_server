@@ -9,6 +9,8 @@ public:
 	void Update();
 	void Add(int32 key, T t, bool isNewData = true);
 	void SetData(MapRef<int32, T> collectoin);
+	void AddUpdatedIndex(int32 key);
+
 private:
 	USE_LOCK;
 	MapRef<int32, T> _collection = MakeShared<Map<int32, T>>();
@@ -38,7 +40,7 @@ bool Collection<T>::Remove(int32 key)
 	WRITE_LOCK;
 	auto removed = _collection->find(key)->second;
 	_collection->erase(key);
-	removed.Remove();
+	removed->Remove();
 	return true;
 };
 
@@ -46,7 +48,13 @@ template<typename T>
 T Collection<T>::Find(int32 key)
 {
 	READ_LOCK;
-	return _collection->find(key)->second;
+	auto target = _collection->find(key);
+
+	/*if (target == nullptr) {
+		return nullptr;
+	}*/
+
+	return target->second;
 };
 
 template<typename T>
@@ -54,15 +62,24 @@ void Collection<T>::Update()
 {
 	WRITE_LOCK;
 	for (auto& key : _updatedKeys) {
-		auto target = Find(key);
-		target.Update();
+		auto target = _collection->find(key)->second;
+		target->Update();
 	}
+
+	_updatedKeys.clear();
 
 	for (auto& key : _addedKeys) {
 		auto target = _collection->find(key)->second;
-		target.Save();
+		target->Save();
 	}
 
 	_addedKeys.clear();
 };
+
+template<typename T>
+void Collection<T>::AddUpdatedIndex(int32 key)
+{
+	WRITE_LOCK;
+	_updatedKeys.push_back(key);
+}
 

@@ -50,6 +50,9 @@
     <Filter Include="Source Files\Thread">
       <UniqueIdentifier>{5885a67c-5cf9-403d-8cec-723067a32f5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DB\Helper">
+      <UniqueIdentifier>{80f85764-e56c-412e-b2e5-fc980248c6ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -133,6 +136,12 @@
     <ClCompile Include="TLS.cpp">
       <Filter>Source Files\Thread</Filter>
     </ClCompile>
+    <ClCompile Include="DBQueryHelper.cpp">
+      <Filter>Source Files\DB\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="UpgradeEquipItem.cpp">
+      <Filter>Source Files\NetworkImpl\PacketHandler\EquipItem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -212,6 +221,12 @@
     </ClInclude>
     <ClInclude Include="TLS.h">
       <Filter>Source Files\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="DBQueryHelper.h">
+      <Filter>Source Files\DB\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="UpgradeEquipItem.h">
+      <Filter>Source Files\NetworkImpl\PacketHandler\EquipItem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

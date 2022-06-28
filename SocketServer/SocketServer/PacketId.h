@@ -5,5 +5,6 @@ enum PacketId : uint16 {
 	LOGIN_RES,
 	BUY_EQUIP_ITEM,
 	BREAK_EQUIP_ITEM,
+	UPGRADE_EQUIP_ITEM
 };
 

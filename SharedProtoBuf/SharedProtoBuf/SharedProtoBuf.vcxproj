@@ -176,6 +176,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Protobuf\UpgradeEquipItem.pb.cc" />
     <ClCompile Include="SharedProtoBuf.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +185,7 @@
     <ClInclude Include="Protobuf\BuyEquipItem.pb.h" />
     <ClInclude Include="Protobuf\EquipItem.pb.h" />
     <ClInclude Include="Protobuf\LoginRequest.pb.h" />
+    <ClInclude Include="Protobuf\UpgradeEquipItem.pb.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Protobuf\proto_files\BreakEquipItem.proto" />
@@ -191,6 +193,7 @@
     <None Include="Protobuf\proto_files\EquipItem.proto" />
     <None Include="Protobuf\proto_files\Player.proto" />
     <None Include="Protobuf\proto_files\LoginRequest.proto" />
+    <None Include="Protobuf\proto_files\UpgradeEquipItem.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

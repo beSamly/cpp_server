@@ -10,14 +10,15 @@ public:
 private:
 	int32 _accountId;
 public:
-	CollectionRef<EquipItem> equipItemCollection;
+	CollectionRef<EquipItemRef> equipItemCollection;
 public:
 	int32 GetAccountId();
 	void LoadPlayerFromDB();
 	void Update();
 
 public:
-	EquipItem AddEquipItem(int32 equipItemIndex);
+	EquipItemRef AddEquipItem(int32 equipItemIndex);
+	EquipItemRef GetEquipItem(int32 slotIndex);
 	bool RemoveEquipItem(int32 slotIndex);
 };
 

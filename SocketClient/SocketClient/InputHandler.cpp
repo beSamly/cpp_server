@@ -6,12 +6,14 @@
 #include "PacketId.h"
 #include "BuyEquipItem.pb.h"
 #include "BreakEquipItem.pb.h"
+#include "UpgradeEquipItem.pb.h"
 
 using std::cin;
 
 void SendLoginRequest(SocketClientRef socketClient);
 void SendBuyEquipItem(SocketClientRef socketClient);
 void SendBreakEquipItem(SocketClientRef socketClient);
+void SendUpgradeEquipItem(SocketClientRef socketClient);
 
 void InputHandler::HandleInput(SocketClientRef socketClient, int32 key)
 {
@@ -24,6 +26,9 @@ void InputHandler::HandleInput(SocketClientRef socketClient, int32 key)
 		break;
 	case 3:
 		SendBreakEquipItem(socketClient);
+		break;
+	case 4:
+		SendUpgradeEquipItem(socketClient);
 		break;
 	default:
 		break;
@@ -70,6 +75,18 @@ void SendBreakEquipItem(SocketClientRef socketClient) {
 	Protocol::BreakEquipItem pkt;
 	pkt.set_slotindex(slotIndex);
 	SendBufferRef buffer = PacketManager::PacketToSendBuffer(pkt, PacketId::BREAK_EQUIP_ITEM);
+	socketClient->_serverSession->Send(buffer);
+}
+
+void SendUpgradeEquipItem(SocketClientRef socketClient) {
+	int32 slotIndex;
+
+	cout << "SlotIndex : " << endl;
+	cin >> slotIndex;
+
+	Protocol::UpgradeEquipItem pkt;
+	pkt.set_slotindex(slotIndex);
+	SendBufferRef buffer = PacketManager::PacketToSendBuffer(pkt, PacketId::UPGRADE_EQUIP_ITEM);
 	socketClient->_serverSession->Send(buffer);
 }
 
