@@ -15,7 +15,7 @@ public:
 	std::shared_ptr<ClientSession> GetClientSessionRef();
 
 public:
-	PlayerRef _player;
+	PlayerRef _player = nullptr;
 public:
 	PlayerRef		GetPlayer();
 	void			SetPlayer(PlayerRef player);

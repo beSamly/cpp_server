@@ -29,15 +29,25 @@ void PacketManager::Init() {
 	_handlers[PacketId::BUY_EQUIP_ITEM] = dynamic_cast<IPacketHandler*>(new PacketHandler::BuyEquipItem());
 	_handlers[PacketId::BREAK_EQUIP_ITEM] = dynamic_cast<IPacketHandler*>(new PacketHandler::BreakEquipItem());
 	_handlers[PacketId::UPGRADE_EQUIP_ITEM] = dynamic_cast<IPacketHandler*>(new PacketHandler::UpgradeEquipItem());
-
-	//[](ClientSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::LOGIN_REQ>(Handle_LOGIN_REQ, session, buffer, len); };
 }
 
 void PacketManager::HandlePacket(ClientSessionRef& session, int16 packetId, BYTE* buffer, int32 len) {
 
-	if (_handlers[packetId] == nullptr) {
-		// TODO logging
-		cout << "Invalid packet id received" << packetId << endl;
+	IPacketHandler* packetHandler = _handlers[packetId];
+
+	if (packetHandler == nullptr) {
+		Log->Debug("[PacketManager] invalid packetId = " + packetId);
+		return;
+	}
+
+	bool requireLogin = packetHandler->RequireLogin();
+	if (requireLogin && session->GetPlayer() == nullptr) {
+		Log->Debug("[PacketManager] invalid packetId = " + packetId);
+		return;
+	}
+
+	if (!packetHandler->Validate(session, buffer, len)) {
+		Log->Debug("[PacketManager] validation failed for pakcetId = " + packetId);
 		return;
 	}
 

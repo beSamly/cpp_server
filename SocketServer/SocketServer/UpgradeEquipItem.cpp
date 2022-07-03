@@ -23,3 +23,9 @@ void PacketHandler::UpgradeEquipItem::HandlePacket(ClientSessionRef& session, BY
 
 	equipItem->SetStar(newStar);
 }
+
+bool PacketHandler::UpgradeEquipItem::Validate(ClientSessionRef& session, BYTE* buffer, int32 len)
+{
+	// TODO Input validation
+	return true;
+}

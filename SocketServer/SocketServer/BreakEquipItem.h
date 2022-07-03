@@ -6,7 +6,9 @@ namespace PacketHandler {
 	class BreakEquipItem : public IPacketHandler
 	{
 	public:
-		void HandlePacket(ClientSessionRef& session, BYTE* buffer, int32 len);
+		bool Validate(ClientSessionRef& session, BYTE* buffer, int32 len) override;
+
+		void HandlePacket(ClientSessionRef& session, BYTE* buffer, int32 len) override;
 	};
 }
 

@@ -204,8 +204,9 @@ bool DBConnection::BindCol(int32 columnIndex, TIMESTAMP_STRUCT* value, SQLLEN* i
 	return BindCol(columnIndex, SQL_C_TYPE_TIMESTAMP, size32(TIMESTAMP_STRUCT), value, index);
 }
 
-bool DBConnection::BindCol(int32 columnIndex, WCHAR* str, int32 size, SQLLEN* index)
+bool DBConnection::BindCol(int32 columnIndex, WCHAR* str, SQLLEN* index)
 {
+	SQLULEN size = 200;
 	return BindCol(columnIndex, SQL_C_WCHAR, size, str, index);
 }
 

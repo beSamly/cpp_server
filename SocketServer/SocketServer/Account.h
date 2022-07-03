@@ -3,18 +3,18 @@
 #include "DBModel.h"
 #include "ColumnInfo.h"
 
-class EquipItem : public DBModel<EquipItem>
+class Account : public DBModel<Account>
 {
 private:
 	int32				_accountId;
-	int32				_slotIndex;
-	int32				_equipItemIndex;
-	int32				_star;
+	String				_email;
+	String				_password;
+	bool				_isAdmin;
 	TIMESTAMP_STRUCT	_createdAt;
 
 public:
-	EquipItem(ColumnInfoVector& columnInfo);
-	EquipItem(int32 accountId, int32 slotIndex, int32 equipItemIndex, int32 star = 0) : _accountId(accountId), _slotIndex(slotIndex), _equipItemIndex(equipItemIndex), _star(star) {
+	Account(ColumnInfoVector& columnInfo);
+	Account() {
 		// TImeStampHelper 생성
 		TIMESTAMP_STRUCT now;
 		now.fraction = 0;
@@ -26,12 +26,13 @@ public:
 		now.day = 13;
 		_createdAt = now;
 	};
-	EquipItem() = default;
 
 public:
 	/* Getter Setter */
-	int32 GetStar() { DBModel::MarkAsUpdated(); return _star; };
-	void SetStar(int32 star) { _star = star; };
+	String GetPassword() { return _password; };
+	int32 GetAccountId() { return _accountId; };
+	//void SetStar(int32 star) { _star = star; };
+
 
 public:
 	/* 인터페이스 구현 */
@@ -39,7 +40,12 @@ public:
 	ColumnInfoVector	GetPrimaryKeyInfo();
 	int32				GetUniqueKey();
 
+	/* Static methods */
 	static ColumnInfoVector GetColumnInfo();
 	static String GetTableName();
+
+public:
+	/* ORM 함수 */
+	static AccountRef FindOneByEmail(String email);
 };
 

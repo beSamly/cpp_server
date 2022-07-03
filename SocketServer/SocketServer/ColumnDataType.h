@@ -1,7 +1,9 @@
 #pragma once
 enum class ColumnDataType
 {
-	int32,
+	INT32,
 	TIMESTAMP_STRUCT,
+	BOOL,
+	STRING
 };
 

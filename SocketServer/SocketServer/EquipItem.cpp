@@ -2,21 +2,22 @@
 #include "EquipItem.h"
 #include "ColumnDataType.h"
 #include "ColumnInfo.h"
-
-String ACCOUNT_ID = L"AccountId";
-String SLOT_INDEX = L"SlotIndex";
-String EQUIP_ITEM_INDEX = L"EquipItemIndex";
-String CREATED_AT = L"CreatedAt";
-String EQUIP_ITEM_TABLE_NAME = L"EquipItem";
-String STAR = L"Star";
+namespace {
+	String ACCOUNT_ID = L"AccountId";
+	String SLOT_INDEX = L"SlotIndex";
+	String EQUIP_ITEM_INDEX = L"EquipItemIndex";
+	String CREATED_AT = L"CreatedAt";
+	String EQUIP_ITEM_TABLE_NAME = L"EquipItem";
+	String STAR = L"Star";
+}
 
 ColumnInfoVector EquipItem::GetColumnInfo() {
 	ColumnInfoVector infoVector;
-	infoVector.AddColumnInfo(ACCOUNT_ID, ColumnDataType::int32, MakeShared<int32>());
-	infoVector.AddColumnInfo(SLOT_INDEX, ColumnDataType::int32, MakeShared<int32>());
-	infoVector.AddColumnInfo(EQUIP_ITEM_INDEX, ColumnDataType::int32, MakeShared<int32>());
-	infoVector.AddColumnInfo(STAR, ColumnDataType::int32, MakeShared<int32>());
-	infoVector.AddColumnInfo(CREATED_AT, ColumnDataType::TIMESTAMP_STRUCT, MakeShared<TIMESTAMP_STRUCT>());
+	infoVector.AddColumnInfo(ACCOUNT_ID, ColumnDataType::INT32);
+	infoVector.AddColumnInfo(SLOT_INDEX, ColumnDataType::INT32);
+	infoVector.AddColumnInfo(EQUIP_ITEM_INDEX, ColumnDataType::INT32);
+	infoVector.AddColumnInfo(STAR, ColumnDataType::INT32);
+	infoVector.AddColumnInfo(CREATED_AT, ColumnDataType::TIMESTAMP_STRUCT);
 	return infoVector;
 };
 
@@ -34,19 +35,19 @@ EquipItem::EquipItem(ColumnInfoVector& columnInfo)
 ColumnInfoVector EquipItem::GetPrimaryKeyInfo()
 {
 	ColumnInfoVector infoVector;
-	infoVector.AddColumnInfo(ACCOUNT_ID, ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_accountId)));
-	infoVector.AddColumnInfo(SLOT_INDEX, ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_slotIndex)));
+	infoVector.AddColumnInfo(ACCOUNT_ID, _accountId);
+	infoVector.AddColumnInfo(SLOT_INDEX, _slotIndex);
 	return infoVector;
 };
 
 ColumnInfoVector EquipItem::GetUpdateInfo()
 {
 	ColumnInfoVector infoVector;
-	infoVector.AddColumnInfo(ACCOUNT_ID, ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_accountId)));
-	infoVector.AddColumnInfo(SLOT_INDEX, ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_slotIndex)));
-	infoVector.AddColumnInfo(EQUIP_ITEM_INDEX, ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_equipItemIndex)));
-	infoVector.AddColumnInfo(STAR, ColumnDataType::int32, static_pointer_cast<void>(MakeShared<int32>(_star)));
-	infoVector.AddColumnInfo(CREATED_AT, ColumnDataType::TIMESTAMP_STRUCT, static_pointer_cast<void>(MakeShared<TIMESTAMP_STRUCT>(_createdAt)));
+	infoVector.AddColumnInfo(ACCOUNT_ID, _accountId);
+	infoVector.AddColumnInfo(SLOT_INDEX, _slotIndex);
+	infoVector.AddColumnInfo(EQUIP_ITEM_INDEX, _equipItemIndex);
+	infoVector.AddColumnInfo(STAR, _star);
+	infoVector.AddColumnInfo(CREATED_AT, _createdAt);
 	return infoVector;
 };
 

@@ -10,6 +10,7 @@ public:
 	void Add(int32 key, T t, bool isNewData = true);
 	void SetData(MapRef<int32, T> collectoin);
 	void AddUpdatedIndex(int32 key);
+	int32 GetSize();
 
 private:
 	USE_LOCK;
@@ -81,5 +82,11 @@ void Collection<T>::AddUpdatedIndex(int32 key)
 {
 	WRITE_LOCK;
 	_updatedKeys.push_back(key);
+}
+
+template<typename T>
+int32 Collection<T>::GetSize()
+{
+	return _collection->size();
 }
 

@@ -4,6 +4,8 @@
 #include <format>
 #include <functional>
 #include <concepts>
+#include <regex>
+#include <iostream>
 
 #ifdef _DEBUG
 #pragma comment(lib, "Protobuf\\Debug\\libprotobufd.lib")
@@ -40,5 +42,6 @@ using CollectionRef = std::shared_ptr<class Collection<T>>;
 using EquipItemRef = std::shared_ptr<class EquipItem>;
 
 using PlayerRef = std::shared_ptr<class Player>;
+using AccountRef = std::shared_ptr<class Account>;
 using DBConnectionGaurdRef = std::shared_ptr<class DBConnectionGaurd>;
 

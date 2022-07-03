@@ -142,6 +142,12 @@
     <ClCompile Include="UpgradeEquipItem.cpp">
       <Filter>Source Files\NetworkImpl\PacketHandler\EquipItem</Filter>
     </ClCompile>
+    <ClCompile Include="InputValidator.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Account.cpp">
+      <Filter>Source Files\DB\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -227,6 +233,12 @@
     </ClInclude>
     <ClInclude Include="UpgradeEquipItem.h">
       <Filter>Source Files\NetworkImpl\PacketHandler\EquipItem</Filter>
+    </ClInclude>
+    <ClInclude Include="InputValidator.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Account.h">
+      <Filter>Source Files\DB\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

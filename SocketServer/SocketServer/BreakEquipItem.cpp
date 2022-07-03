@@ -17,3 +17,10 @@ void PacketHandler::BreakEquipItem::HandlePacket(ClientSessionRef& session, BYTE
 	auto player = session->GetPlayer();
 	player->RemoveEquipItem(slotIndex);
 }
+
+bool PacketHandler::BreakEquipItem::Validate(ClientSessionRef& session, BYTE* buffer, int32 len)
+{
+	// TODO Input validation
+	return true;
+}
+

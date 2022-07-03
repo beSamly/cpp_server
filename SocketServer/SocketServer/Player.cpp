@@ -8,7 +8,7 @@ int32 Player::GetAccountId()
 }
 
 void Player::LoadPlayerFromDB(){
-	equipItemCollection = EquipItem::FindAll(_accountId);
+	equipItemCollection = EquipItem::FindAllByAccountId(_accountId);
 	//equipItemCollection.SetData(EquipItem::FindAll(connection, _accountId));
 }
 void Player::Update()

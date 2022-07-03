@@ -17,3 +17,9 @@ void PacketHandler::BuyEquipItem::HandlePacket(ClientSessionRef& session, BYTE* 
 	auto player = session->GetPlayer();
 	EquipItemRef equipItem = player->AddEquipItem(equipItemIndex);
 }
+
+bool PacketHandler::BuyEquipItem::Validate(ClientSessionRef& session, BYTE* buffer, int32 len)
+{
+	// TODO Input validation
+	return true;
+}

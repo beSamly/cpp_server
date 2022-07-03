@@ -49,10 +49,10 @@ public:
 		return std::format(L"INSERT INTO [dbo].[{}]({}) VALUES({})", tableName, columnClause, valueClause);
 	};
 
-	static String buildSelectQuery(String tableName, Vector<String> columnNames, int32 accountId) {
-
+	static String buildSelectQuery(String tableName, Vector<String> columnNames, Vector<String> keyNames) {
 		String columnClause = GetColumnClause(columnNames);
-		return std::format(L"SELECT {} FROM [dbo].[{}] WHERE AccountId = {}", columnClause, tableName, accountId);
+		String conditionClause = GetConditionClause(keyNames);
+		return std::format(L"SELECT {} FROM [dbo].[{}] WHERE {}", columnClause, tableName, conditionClause);
 	}
 
 	static String buildUpdateQuery(String tableName, Vector<String> columnNames, Vector<String> keyNames) {
@@ -89,21 +89,33 @@ public:
 
 		if (isColumnBinding) {
 			switch (dataType) {
-			case ColumnDataType::int32:
+			case ColumnDataType::INT32:
 				dbConnection->BindCol(index, static_pointer_cast<int32>(ptr).get(), sqllen);
 				break;
 			case ColumnDataType::TIMESTAMP_STRUCT:
 				dbConnection->BindCol(index, static_pointer_cast<TIMESTAMP_STRUCT>(ptr).get(), sqllen);
 				break;
+			case ColumnDataType::BOOL:
+				dbConnection->BindCol(index, static_pointer_cast<bool>(ptr).get(), sqllen);
+				break;
+			case ColumnDataType::STRING:
+				dbConnection->BindCol(index, static_pointer_cast<WCHAR[]>(ptr).get(), sqllen);
+				break;
 			}
 		}
 		else {
 			switch (dataType) {
-			case ColumnDataType::int32:
+			case ColumnDataType::INT32:
 				dbConnection->BindParam(index, static_pointer_cast<int32>(ptr).get(), sqllen);
 				break;
 			case ColumnDataType::TIMESTAMP_STRUCT:
 				dbConnection->BindParam(index, static_pointer_cast<TIMESTAMP_STRUCT>(ptr).get(), sqllen);
+				break;
+			case ColumnDataType::BOOL:
+				dbConnection->BindParam(index, static_pointer_cast<bool>(ptr).get(), sqllen);
+				break;
+			case ColumnDataType::STRING:
+				dbConnection->BindParam(index, static_pointer_cast<WCHAR[]>(ptr).get(), sqllen);
 				break;
 			}
 		}

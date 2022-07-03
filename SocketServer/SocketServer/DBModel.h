@@ -16,6 +16,7 @@ public:
 	virtual ColumnInfoVector GetUpdateInfo() abstract;
 
 public:
+
 	static CollectionRef<shared_ptr<T>> FindAll(int32 accountId) {
 		DBConnectionGaurdRef dbConnectionGaurd = ConnectionPool->Pop();
 		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
@@ -38,6 +39,85 @@ public:
 		/*---------------------------------
 		|	Execute query and fetch data  |
 		----------------------------------*/
+		auto collection = MakeShared<Collection<shared_ptr<T>>>();
+		if (!dbConnection->Execute(query.c_str())) {
+			return collection;
+		}
+
+		while (dbConnection->Fetch())
+		{
+			auto data = MakeShared<T>(columnInfo);
+			auto uniqueKey = data->GetUniqueKey();
+			data->SetMarkAsUpdated([collection, uniqueKey]() {
+				collection->AddUpdatedIndex(uniqueKey);
+			});
+			collection->Add(uniqueKey, data, false);
+		}
+
+		return collection;
+	};
+
+	static CollectionRef<shared_ptr<T>> FindAllByAccountId(int32 accountId) {
+		ColumnInfoVector info;
+		info.AddColumnInfo(L"AccountId", accountId);
+		return FindAll(info);
+	}
+
+	static shared_ptr<T> FindOne(ColumnInfoVector primaryKeyInfo) {
+		DBConnectionGaurdRef dbConnectionGaurd = ConnectionPool->Pop();
+		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
+		dbConnection->Unbind();
+
+		ColumnInfoVector columnInfo = T::GetColumnInfo();
+		SQLLEN sqllen = 0;
+		DBQueryHelper::BindCol(&columnInfo, dbConnection, &sqllen);
+
+		/*-------------------------
+		|	Binding Parameter     |
+		--------------------------*/
+		DBQueryHelper::BindParam(&primaryKeyInfo, dbConnection, &sqllen);
+
+		/*---------------------------------
+		|	Execute query and fetch data  |
+		----------------------------------*/
+		Vector<String> columnNames = columnInfo.ExtractKeyNames();
+		Vector<String> keyNames = primaryKeyInfo.ExtractKeyNames();
+		String query = DBQueryHelper::buildSelectQuery(T::GetTableName(), columnNames, keyNames);
+
+		if (!dbConnection->Execute(query.c_str())) {
+			return nullptr;
+		}
+
+		if (dbConnection->Fetch()) {
+			auto data = MakeShared<T>(columnInfo);
+			return data;
+		}
+		else {
+			return nullptr;
+		}
+	};
+
+	static CollectionRef<shared_ptr<T>> FindAll(ColumnInfoVector primaryKeyInfo) {
+		DBConnectionGaurdRef dbConnectionGaurd = ConnectionPool->Pop();
+		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
+		dbConnection->Unbind();
+
+		ColumnInfoVector columnInfo = T::GetColumnInfo();
+		SQLLEN sqllen = 0;
+		DBQueryHelper::BindCol(&columnInfo, dbConnection, &sqllen);
+
+		/*-------------------------
+		|	Binding Parameter     |
+		--------------------------*/
+		DBQueryHelper::BindParam(&primaryKeyInfo, dbConnection, &sqllen);
+
+		/*---------------------------------
+		|	Execute query and fetch data  |
+		----------------------------------*/
+		Vector<String> columnNames = columnInfo.ExtractKeyNames();
+		Vector<String> keyNames = primaryKeyInfo.ExtractKeyNames();
+		String query = DBQueryHelper::buildSelectQuery(T::GetTableName(), columnNames, keyNames);
+
 		auto collection = MakeShared<Collection<shared_ptr<T>>>();
 		if (!dbConnection->Execute(query.c_str())) {
 			return collection;
