@@ -1,8 +1,8 @@
 #include "pch.h"
-#include "ColumnInfo.h"
+#include "Column.h"
 #include "ColumnDataType.h"
 
-ColumnInfo::ColumnInfo(String columnName, ColumnDataType dataType, Constraint constraint)
+Column::Column(String columnName, ColumnDataType dataType, ColumnConstraint constraint)
 {
 	_columnName = columnName;
 	_dataType = dataType;
@@ -21,7 +21,7 @@ ColumnInfo::ColumnInfo(String columnName, ColumnDataType dataType, Constraint co
 	}
 }
 
-ColumnInfo::ColumnInfo(String columnName, String value)
+Column::Column(String columnName, String value)
 {
 	_columnName = columnName;
 	_dataType = ColumnDataType::STRING;
@@ -34,12 +34,12 @@ ColumnInfo::ColumnInfo(String columnName, String value)
 	_columnValuePtr = ptr;
 }
 
-void ColumnInfoVector::AddColumnInfo(ColumnInfo info)
+void ColumnVector::AddColumn(Column info)
 {
 	_vector.push_back(info);
 }
 
-ColumnInfo ColumnInfoVector::Find(String columnName)
+Column ColumnVector::Find(String columnName)
 {
 	for (const auto& columnInfo : _vector) {
 		if (columnInfo._columnName == columnName) {
@@ -48,7 +48,7 @@ ColumnInfo ColumnInfoVector::Find(String columnName)
 	}
 }
 
-void ColumnInfo::CopyValue(shared_ptr<void> ptr)
+void Column::CopyColumnValue(shared_ptr<void> ptr)
 {
 	switch (_dataType) {
 	case ColumnDataType::INT32:

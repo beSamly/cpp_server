@@ -23,7 +23,7 @@
 #include "ClientSession.h"
 #include "SocketServer.h"
 #include "Logger.h"
-#include "ColumnInfo.h"
+#include "Column.h"
 #include "Collection.h"
 
 using std::format;
@@ -32,7 +32,7 @@ using std::function;
 using std::vector;
 using SocketServerRef = std::shared_ptr<class SocketServer>;
 using ClientSessionRef = std::shared_ptr<class ClientSession>;
-using ColumnInfoRef = std::shared_ptr<class ColumnInfo>;
+using ColumnRef = std::shared_ptr<class Column>;
 using JobQueueRef = std::shared_ptr<class JobQueue>;
 using JobRef = std::shared_ptr<class Job>;
 using JobDataRef = std::shared_ptr<class JobData>;

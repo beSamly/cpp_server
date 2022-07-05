@@ -66,17 +66,17 @@ public:
 		return std::format(L"DELETE FROM [dbo].[{}] WHERE {}", tableName, conditionClause);
 	};
 
-	static void BindCol(ColumnInfoVector* columnInfo, DBConnection* dbConnection, SQLLEN* sqllen) {
+	static void BindCol(ColumnVector* columnInfo, DBConnection* dbConnection, SQLLEN* sqllen) {
 		BindInfo(columnInfo, dbConnection, true, sqllen);
 	}
-	static void BindParam(ColumnInfoVector* columnInfo, DBConnection* dbConnection, SQLLEN* sqllen) {
+	static void BindParam(ColumnVector* columnInfo, DBConnection* dbConnection, SQLLEN* sqllen) {
 		BindInfo(columnInfo, dbConnection, false, sqllen);
 	}
 
-	static void BindInfo(ColumnInfoVector* columnInfo, DBConnection* dbConnection, bool isColumnBinding, SQLLEN* sqllen) {
+	static void BindInfo(ColumnVector* columnInfo, DBConnection* dbConnection, bool isColumnBinding, SQLLEN* sqllen) {
 		int32 count = 1;
 
-		for (const ColumnInfo& info : columnInfo->_vector)
+		for (const Column& info : columnInfo->_vector)
 		{
 			auto columnName = info._columnName;
 			auto dataType = info._dataType;

@@ -97,7 +97,7 @@
     <ClCompile Include="DBModel.cpp">
       <Filter>Source Files\DB\BaseModel</Filter>
     </ClCompile>
-    <ClCompile Include="ColumnInfo.cpp">
+    <ClCompile Include="Column.cpp">
       <Filter>Source Files\DB\ModelInfo</Filter>
     </ClCompile>
     <ClCompile Include="ColumnDataType.cpp">
@@ -195,7 +195,7 @@
     <ClInclude Include="DBModel.h">
       <Filter>Source Files\DB\BaseModel</Filter>
     </ClInclude>
-    <ClInclude Include="ColumnInfo.h">
+    <ClInclude Include="Column.h">
       <Filter>Source Files\DB\ModelInfo</Filter>
     </ClInclude>
     <ClInclude Include="ColumnDataType.h">

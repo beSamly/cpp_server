@@ -7,7 +7,7 @@ enum class ColumnDataType
 	STRING
 };
 
-enum class Constraint
+enum class ColumnConstraint
 {
 	NONE,
 	UNIQUE_KEY,

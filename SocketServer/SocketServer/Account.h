@@ -1,7 +1,7 @@
 #pragma once
 #include "DBConnection.h"
 #include "DBModel.h"
-#include "ColumnInfo.h"
+#include "Column.h"
 
 class Account : public DBModel<Account>
 {
@@ -14,22 +14,23 @@ private:
 
 	String ACCOUNT_TABLE_NAME = L"Account";
 
-private:
-	TableSchema _info{
-		ColumnInfo(ACCOUNT_ID, ColumnDataType::INT32, Constraint::PRIMARY_KEY),
-		ColumnInfo(EMAIL, ColumnDataType::STRING, Constraint::UNIQUE_KEY),
-		ColumnInfo(PASSWORD, ColumnDataType::STRING),
-		ColumnInfo(IS_ADMIN, ColumnDataType::BOOL) ,
-		ColumnInfo(CREATED_AT, ColumnDataType::TIMESTAMP_STRUCT, Constraint::AUTO_GENERATED)
+	TableSchema _data{
+		{
+			Column(ACCOUNT_ID, ColumnDataType::INT32, ColumnConstraint::PRIMARY_KEY),
+			Column(EMAIL, ColumnDataType::STRING, ColumnConstraint::UNIQUE_KEY),
+			Column(PASSWORD, ColumnDataType::STRING),
+			Column(IS_ADMIN, ColumnDataType::BOOL) ,
+			Column(CREATED_AT, ColumnDataType::TIMESTAMP_STRUCT, ColumnConstraint::AUTO_GENERATED)
+		}
 	};
 
 public:
 	/* Getter Setter */
-	int32				GetAccountId() { return _info.Get<int32>(ACCOUNT_ID); };
-	String				GetEmail() { return _info.Get<String>(EMAIL); };
-	String				GetPassword() { return _info.Get<String>(PASSWORD); };
-	bool				GetIsAdmin() { return _info.Get<bool>(IS_ADMIN); };
-	TIMESTAMP_STRUCT	GetCreatedAt() { return _info.Get<TIMESTAMP_STRUCT>(CREATED_AT); };
+	int32				GetAccountId() { return _data.GetColumnValue<int32>(ACCOUNT_ID); };
+	String				GetEmail() { return _data.GetColumnValue<String>(EMAIL); };
+	String				GetPassword() { return _data.GetColumnValue<String>(PASSWORD); };
+	bool				GetIsAdmin() { return _data.GetColumnValue<bool>(IS_ADMIN); };
+	TIMESTAMP_STRUCT	GetCreatedAt() { return _data.GetColumnValue<TIMESTAMP_STRUCT>(CREATED_AT); };
 
 public:
 	Account() {
@@ -38,7 +39,7 @@ public:
 
 public:
 	/* 인터페이스 구현 */
-	TableSchema* GetTableSchema() { return &_info; }
+	TableSchema* GetTableSchema() { return &_data; }
 	String GetTableName() { return ACCOUNT_TABLE_NAME; };
 
 public:

@@ -165,7 +165,7 @@
     <ClCompile Include="ClientSession.cpp" />
     <ClCompile Include="Collection.cpp" />
     <ClCompile Include="ColumnDataType.cpp" />
-    <ClCompile Include="ColumnInfo.cpp" />
+    <ClCompile Include="Column.cpp" />
     <ClCompile Include="DBConnection.cpp" />
     <ClCompile Include="DBConnectionPool.cpp" />
     <ClCompile Include="DBQueryHelper.cpp" />
@@ -205,7 +205,7 @@
     <ClInclude Include="ClientSession.h" />
     <ClInclude Include="Collection.h" />
     <ClInclude Include="ColumnDataType.h" />
-    <ClInclude Include="ColumnInfo.h" />
+    <ClInclude Include="Column.h" />
     <ClInclude Include="DBConnection.h" />
     <ClInclude Include="DBConnectionPool.h" />
     <ClInclude Include="DBQueryHelper.h" />

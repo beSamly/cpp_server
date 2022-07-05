@@ -14,19 +14,19 @@ public:
 
 public:
 	CollectionRef<shared_ptr<T>> FindAllByAccountId(int32 accountId) {
-		ColumnInfoVector primaryKeyInfo;
-		primaryKeyInfo.AddColumnInfo(ColumnInfo(L"AccountId", accountId));
+		ColumnVector primaryKeyInfo;
+		primaryKeyInfo.AddColumn(Column(L"AccountId", accountId));
 		return FindAll(primaryKeyInfo);
 	}
 
-	shared_ptr<T> FindOne(ColumnInfoVector primaryKeyInfo) {
+	shared_ptr<T> FindOne(ColumnVector primaryKeyInfo) {
 		DBConnectionGaurdRef dbConnectionGaurd = ConnectionPool->Pop();
 		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
 		dbConnection->Unbind();
 
 		TableSchema* tableSchema = GetTableSchema();
 
-		ColumnInfoVector columnInfo = tableSchema->GetColumnInfo();
+		ColumnVector columnInfo = tableSchema->GetColumn();
 		SQLLEN sqllen = 0;
 		DBQueryHelper::BindCol(&columnInfo, dbConnection, &sqllen);
 
@@ -61,7 +61,7 @@ public:
 		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
 
 		TableSchema* tableSchema = GetTableSchema();
-		ColumnInfoVector updateInfo = tableSchema->GetInsertInto();
+		ColumnVector updateInfo = tableSchema->GetInsertInto();
 
 		SQLLEN sqllen = 0;
 		DBQueryHelper::BindParam(&updateInfo, dbConnection, &sqllen);
@@ -84,7 +84,7 @@ public:
 		SQLLEN sqllen = 0;
 		TableSchema* tableSchema = GetTableSchema();
 
-		ColumnInfoVector keyInfo = tableSchema->GetPrimaryKeyInfo();
+		ColumnVector keyInfo = tableSchema->GetPrimaryKeyInfo();
 		DBQueryHelper::BindParam(&keyInfo, dbConnection, &sqllen);
 
 		Vector<String> keyNames = keyInfo.ExtractKeyNames();
@@ -106,8 +106,8 @@ public:
 
 		TableSchema* tableSchema = GetTableSchema();
 
-		ColumnInfoVector columnInfo = tableSchema->GetUpdateInfo();
-		ColumnInfoVector primaryKeyInfo = tableSchema->GetPrimaryKeyInfo();
+		ColumnVector columnInfo = tableSchema->GetUpdateInfo();
+		ColumnVector primaryKeyInfo = tableSchema->GetPrimaryKeyInfo();
 		Vector<String> columnNames = columnInfo.ExtractKeyNames();
 		Vector<String> primaryKeyNames = primaryKeyInfo.ExtractKeyNames();
 
@@ -123,13 +123,13 @@ public:
 	/*------------------------
 	|		Version 2		 |
 	-------------------------*/
-	CollectionRef<shared_ptr<T>> FindAll(ColumnInfoVector primaryKeyInfo) {
+	CollectionRef<shared_ptr<T>> FindAll(ColumnVector primaryKeyInfo) {
 		DBConnectionGaurdRef dbConnectionGaurd = ConnectionPool->Pop();
 		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
 		dbConnection->Unbind();
 
 		TableSchema* tableSchema = GetTableSchema();
-		ColumnInfoVector columnInfo = tableSchema->GetColumnInfo();
+		ColumnVector columnInfo = tableSchema->GetColumn();
 		SQLLEN sqllen = 0;
 		DBQueryHelper::BindCol(&columnInfo, dbConnection, &sqllen);
 
