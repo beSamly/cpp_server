@@ -42,12 +42,12 @@ void PacketManager::HandlePacket(ClientSessionRef& session, int16 packetId, BYTE
 
 	bool requireLogin = packetHandler->RequireLogin();
 	if (requireLogin && session->GetPlayer() == nullptr) {
-		Log->Debug("[PacketManager] invalid packetId = " + packetId);
+		Log->Debug(format("[PacketManager] invalid packetId = {}", packetId));
 		return;
 	}
 
 	if (!packetHandler->Validate(session, buffer, len)) {
-		Log->Debug("[PacketManager] validation failed for pakcetId = " + packetId);
+		Log->Debug(format("[PacketManager] validation failed for packetId = {}", packetId));
 		return;
 	}
 

@@ -26,6 +26,7 @@
 #include "ColumnInfo.h"
 #include "Collection.h"
 
+using std::format;
 using std::shared_ptr;
 using std::function;
 using std::vector;
