@@ -7,3 +7,10 @@ enum class ColumnDataType
 	STRING
 };
 
+enum class Constraint
+{
+	NONE,
+	UNIQUE_KEY,
+	PRIMARY_KEY,
+	AUTO_GENERATED,
+};

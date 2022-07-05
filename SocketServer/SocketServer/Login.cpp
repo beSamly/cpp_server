@@ -36,7 +36,7 @@ void PacketHandler::Login::HandlePacket(ClientSessionRef& session, BYTE* buffer,
 
 	auto email = pkt.email();
 	auto password = pkt.password();
-	auto account = Account::FindOneByEmail(wstring(email.begin(), email.end()));
+	auto account = Account().FindOneByEmail(wstring(email.begin(), email.end()));
 	if (account == nullptr) {
 		return;
 	}

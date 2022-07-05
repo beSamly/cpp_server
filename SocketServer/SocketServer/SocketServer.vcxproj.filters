@@ -148,6 +148,12 @@
     <ClCompile Include="Account.cpp">
       <Filter>Source Files\DB\Model</Filter>
     </ClCompile>
+    <ClCompile Include="TableInfo.cpp">
+      <Filter>Source Files\DB\ModelInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeHelper.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -239,6 +245,12 @@
     </ClInclude>
     <ClInclude Include="Account.h">
       <Filter>Source Files\DB\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="TableInfo.h">
+      <Filter>Source Files\DB\ModelInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeHelper.h">
+      <Filter>Source Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

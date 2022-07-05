@@ -6,46 +6,43 @@
 class Account : public DBModel<Account>
 {
 private:
-	int32				_accountId;
-	String				_email;
-	String				_password;
-	bool				_isAdmin;
-	TIMESTAMP_STRUCT	_createdAt;
+	String ACCOUNT_ID = L"AccountId";
+	String EMAIL = L"Email";
+	String PASSWORD = L"Password";
+	String IS_ADMIN = L"IsAdmin";
+	String CREATED_AT = L"CreatedAt";
 
-public:
-	Account(ColumnInfoVector& columnInfo);
-	Account() {
-		// TImeStampHelper 생성
-		TIMESTAMP_STRUCT now;
-		now.fraction = 0;
-		now.hour = 0;
-		now.minute = 0;
-		now.second = 0;
-		now.year = 2022;
-		now.month = 11;
-		now.day = 13;
-		_createdAt = now;
+	String ACCOUNT_TABLE_NAME = L"Account";
+
+private:
+	TableInfo _info{
+		ColumnInfo(ACCOUNT_ID, ColumnDataType::INT32, Constraint::PRIMARY_KEY),
+		ColumnInfo(EMAIL, ColumnDataType::STRING, Constraint::UNIQUE_KEY),
+		ColumnInfo(PASSWORD, ColumnDataType::STRING),
+		ColumnInfo(IS_ADMIN, ColumnDataType::BOOL) ,
+		ColumnInfo(CREATED_AT, ColumnDataType::TIMESTAMP_STRUCT, Constraint::AUTO_GENERATED)
 	};
 
 public:
 	/* Getter Setter */
-	String GetPassword() { return _password; };
-	int32 GetAccountId() { return _accountId; };
-	//void SetStar(int32 star) { _star = star; };
+	int32				GetAccountId() { return _info.Get<int32>(ACCOUNT_ID); };
+	String				GetEmail() { return _info.Get<String>(EMAIL); };
+	String				GetPassword() { return _info.Get<String>(PASSWORD); };
+	bool				GetIsAdmin() { return _info.Get<bool>(IS_ADMIN); };
+	TIMESTAMP_STRUCT	GetCreatedAt() { return _info.Get<TIMESTAMP_STRUCT>(CREATED_AT); };
 
+public:
+	Account() {
+
+	};
 
 public:
 	/* 인터페이스 구현 */
-	ColumnInfoVector	GetUpdateInfo();
-	ColumnInfoVector	GetPrimaryKeyInfo();
-	int32				GetUniqueKey();
-
-	/* Static methods */
-	static ColumnInfoVector GetColumnInfo();
-	static String GetTableName();
+	TableInfo* GetTableInfo() { return &_info; }
+	String GetTableName() { return ACCOUNT_TABLE_NAME; };
 
 public:
 	/* ORM 함수 */
-	static AccountRef FindOneByEmail(String email);
+	AccountRef FindOneByEmail(String email);
 };
 

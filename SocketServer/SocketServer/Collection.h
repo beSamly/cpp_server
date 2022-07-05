@@ -5,6 +5,7 @@ class Collection
 {
 public:
 	T Find(int32 key);
+	bool KeyExist(int32 key);
 	bool Remove(int32 key);
 	void Update();
 	void Add(int32 key, T t, bool isNewData = true);
@@ -16,7 +17,6 @@ private:
 	USE_LOCK;
 	MapRef<int32, T> _collection = MakeShared<Map<int32, T>>();
 	Vector<int32> _updatedKeys;
-	Vector<int32> _addedKeys;
 };
 
 template<typename T>
@@ -24,8 +24,13 @@ void Collection<T>::Add(int32 key, T t, bool isNewData)
 {
 	WRITE_LOCK;
 	_collection->insert(std::make_pair(key, t));
+
+	t->GetTableInfo()->SetMarkAsUpdated([this, key]() {
+		this->AddUpdatedIndex(key);
+	});
+
 	if (isNewData) {
-		_addedKeys.push_back(key);
+		t->Insert();
 	}
 };
 
@@ -59,6 +64,14 @@ T Collection<T>::Find(int32 key)
 };
 
 template<typename T>
+bool Collection<T>::KeyExist(int32 key)
+{
+	READ_LOCK;
+	auto target = _collection->find(key);
+	return target != _collection->end() ? true : false;
+};
+
+template<typename T>
 void Collection<T>::Update()
 {
 	WRITE_LOCK;
@@ -66,15 +79,7 @@ void Collection<T>::Update()
 		auto target = _collection->find(key)->second;
 		target->Update();
 	}
-
 	_updatedKeys.clear();
-
-	for (auto& key : _addedKeys) {
-		auto target = _collection->find(key)->second;
-		target->Save();
-	}
-
-	_addedKeys.clear();
 };
 
 template<typename T>

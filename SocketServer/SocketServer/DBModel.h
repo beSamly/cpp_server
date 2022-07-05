@@ -2,73 +2,34 @@
 #include "DBConnectionPool.h"
 #include "DBConnection.h"
 #include "DBQueryHelper.h"
+#include "TableInfo.h"
 
 template<typename T>
 class DBModel
 {
 protected:
-	function<void()>	MarkAsUpdated;
-	void SetMarkAsUpdated(function<void()> func) { MarkAsUpdated = func; };
+
 
 public:
 	/* 인터페이스 */
-	virtual ColumnInfoVector GetPrimaryKeyInfo() abstract;
-	virtual ColumnInfoVector GetUpdateInfo() abstract;
+	virtual String GetTableName() abstract;
+	virtual TableInfo* GetTableInfo() abstract;
 
 public:
-
-	static CollectionRef<shared_ptr<T>> FindAll(int32 accountId) {
-		DBConnectionGaurdRef dbConnectionGaurd = ConnectionPool->Pop();
-		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
-		dbConnection->Unbind();
-
-		ColumnInfoVector columnInfo = T::GetColumnInfo();
-		SQLLEN sqllen = 0;
-		DBQueryHelper::BindCol(&columnInfo, dbConnection, &sqllen);
-
-		Vector<String> columnNames = columnInfo.ExtractKeyNames();
-
-		String query = DBQueryHelper::buildSelectQuery(T::GetTableName(), columnNames, accountId);
-
-		/*-------------------------
-		|	Binding Parameter     |
-		--------------------------*/
-		SQLLEN accountLen = 0;
-		dbConnection->BindParam(1, &accountId, &accountLen);
-
-		/*---------------------------------
-		|	Execute query and fetch data  |
-		----------------------------------*/
-		auto collection = MakeShared<Collection<shared_ptr<T>>>();
-		if (!dbConnection->Execute(query.c_str())) {
-			return collection;
-		}
-
-		while (dbConnection->Fetch())
-		{
-			auto data = MakeShared<T>(columnInfo);
-			auto uniqueKey = data->GetUniqueKey();
-			data->SetMarkAsUpdated([collection, uniqueKey]() {
-				collection->AddUpdatedIndex(uniqueKey);
-			});
-			collection->Add(uniqueKey, data, false);
-		}
-
-		return collection;
-	};
-
-	static CollectionRef<shared_ptr<T>> FindAllByAccountId(int32 accountId) {
-		ColumnInfoVector info;
-		info.AddColumnInfo(L"AccountId", accountId);
-		return FindAll(info);
+	CollectionRef<shared_ptr<T>> FindAllByAccountId(int32 accountId) {
+		ColumnInfoVector primaryKeyInfo;
+		primaryKeyInfo.AddColumnInfo(ColumnInfo(L"AccountId", accountId));
+		return FindAll(primaryKeyInfo);
 	}
 
-	static shared_ptr<T> FindOne(ColumnInfoVector primaryKeyInfo) {
+	shared_ptr<T> FindOne(ColumnInfoVector primaryKeyInfo) {
 		DBConnectionGaurdRef dbConnectionGaurd = ConnectionPool->Pop();
 		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
 		dbConnection->Unbind();
 
-		ColumnInfoVector columnInfo = T::GetColumnInfo();
+		TableInfo* tableInfo = GetTableInfo();
+
+		ColumnInfoVector columnInfo = tableInfo->GetColumnInfo();
 		SQLLEN sqllen = 0;
 		DBQueryHelper::BindCol(&columnInfo, dbConnection, &sqllen);
 
@@ -82,14 +43,15 @@ public:
 		----------------------------------*/
 		Vector<String> columnNames = columnInfo.ExtractKeyNames();
 		Vector<String> keyNames = primaryKeyInfo.ExtractKeyNames();
-		String query = DBQueryHelper::buildSelectQuery(T::GetTableName(), columnNames, keyNames);
+		String query = DBQueryHelper::buildSelectQuery(GetTableName(), columnNames, keyNames);
 
 		if (!dbConnection->Execute(query.c_str())) {
 			return nullptr;
 		}
 
 		if (dbConnection->Fetch()) {
-			auto data = MakeShared<T>(columnInfo);
+			auto data = MakeShared<T>();
+			data->GetTableInfo()->Mapping(columnInfo);
 			return data;
 		}
 		else {
@@ -97,56 +59,19 @@ public:
 		}
 	};
 
-	static CollectionRef<shared_ptr<T>> FindAll(ColumnInfoVector primaryKeyInfo) {
+	bool Insert() {
 		DBConnectionGaurdRef dbConnectionGaurd = ConnectionPool->Pop();
 		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
-		dbConnection->Unbind();
 
-		ColumnInfoVector columnInfo = T::GetColumnInfo();
-		SQLLEN sqllen = 0;
-		DBQueryHelper::BindCol(&columnInfo, dbConnection, &sqllen);
-
-		/*-------------------------
-		|	Binding Parameter     |
-		--------------------------*/
-		DBQueryHelper::BindParam(&primaryKeyInfo, dbConnection, &sqllen);
-
-		/*---------------------------------
-		|	Execute query and fetch data  |
-		----------------------------------*/
-		Vector<String> columnNames = columnInfo.ExtractKeyNames();
-		Vector<String> keyNames = primaryKeyInfo.ExtractKeyNames();
-		String query = DBQueryHelper::buildSelectQuery(T::GetTableName(), columnNames, keyNames);
-
-		auto collection = MakeShared<Collection<shared_ptr<T>>>();
-		if (!dbConnection->Execute(query.c_str())) {
-			return collection;
-		}
-
-		while (dbConnection->Fetch())
-		{
-			auto data = MakeShared<T>(columnInfo);
-			auto uniqueKey = data->GetUniqueKey();
-			data->SetMarkAsUpdated([collection, uniqueKey]() {
-				collection->AddUpdatedIndex(uniqueKey);
-			});
-			collection->Add(uniqueKey, data, false);
-		}
-
-		return collection;
-	};
-
-	bool Save() {
-		DBConnectionGaurdRef dbConnectionGaurd = ConnectionPool->Pop();
-		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
-		ColumnInfoVector updateInfo = GetUpdateInfo();
+		TableInfo* tableInfo = GetTableInfo();
+		ColumnInfoVector updateInfo = tableInfo->GetInsertInto();
 
 		SQLLEN sqllen = 0;
 		DBQueryHelper::BindParam(&updateInfo, dbConnection, &sqllen);
 
 		Vector<String> columnNames = updateInfo.ExtractKeyNames();
 
-		auto query = DBQueryHelper::buildInsertQuery(T::GetTableName(), columnNames);
+		auto query = DBQueryHelper::buildInsertQuery(GetTableName(), columnNames);
 		if (!dbConnection->Execute(query.c_str())) {
 			return false;
 		}
@@ -160,12 +85,13 @@ public:
 		dbConnection->Unbind();
 
 		SQLLEN sqllen = 0;
+		TableInfo* tableInfo = GetTableInfo();
 
-		ColumnInfoVector keyInfo = GetPrimaryKeyInfo();
+		ColumnInfoVector keyInfo = tableInfo->GetPrimaryKeyInfo();
 		DBQueryHelper::BindParam(&keyInfo, dbConnection, &sqllen);
 
 		Vector<String> keyNames = keyInfo.ExtractKeyNames();
-		auto query = DBQueryHelper::buildDeleteQuery(T::GetTableName(), keyNames);
+		auto query = DBQueryHelper::buildDeleteQuery(GetTableName(), keyNames);
 		if (!dbConnection->Execute(query.c_str())) {
 			return false;
 			//return nullptr;
@@ -181,18 +107,67 @@ public:
 
 		SQLLEN sqllen = 0;
 
-		ColumnInfoVector columnInfo = GetUpdateInfo();
-		ColumnInfoVector primaryKeyInfo = GetPrimaryKeyInfo();
+		TableInfo* tableInfo = GetTableInfo();
+
+		ColumnInfoVector columnInfo = tableInfo->GetUpdateInfo();
+		ColumnInfoVector primaryKeyInfo = tableInfo->GetPrimaryKeyInfo();
 		Vector<String> columnNames = columnInfo.ExtractKeyNames();
 		Vector<String> primaryKeyNames = primaryKeyInfo.ExtractKeyNames();
 
 		columnInfo.Concat(primaryKeyInfo);
 		DBQueryHelper::BindParam(&columnInfo, dbConnection, &sqllen);
 
-		auto query = DBQueryHelper::buildUpdateQuery(T::GetTableName(), columnNames, primaryKeyNames);
+		auto query = DBQueryHelper::buildUpdateQuery(GetTableName(), columnNames, primaryKeyNames);
 		if (!dbConnection->Execute(query.c_str())) {
 			return;
 		}
 	}
+
+	/*------------------------
+	|		Version 2		 |
+	-------------------------*/
+	CollectionRef<shared_ptr<T>> FindAll(ColumnInfoVector primaryKeyInfo) {
+		DBConnectionGaurdRef dbConnectionGaurd = ConnectionPool->Pop();
+		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
+		dbConnection->Unbind();
+
+		TableInfo* tableInfo = GetTableInfo();
+		ColumnInfoVector columnInfo = tableInfo->GetColumnInfo();
+		SQLLEN sqllen = 0;
+		DBQueryHelper::BindCol(&columnInfo, dbConnection, &sqllen);
+
+		/*-------------------------
+		|	Binding Parameter     |
+		--------------------------*/
+		DBQueryHelper::BindParam(&primaryKeyInfo, dbConnection, &sqllen);
+
+		/*---------------------------------
+		|	Execute query and fetch data  |
+		----------------------------------*/
+		Vector<String> columnNames = columnInfo.ExtractKeyNames();
+		Vector<String> keyNames = primaryKeyInfo.ExtractKeyNames();
+		String query = DBQueryHelper::buildSelectQuery(GetTableName(), columnNames, keyNames);
+
+		auto collection = MakeShared<Collection<shared_ptr<T>>>();
+		if (!dbConnection->Execute(query.c_str())) {
+			return collection;
+		}
+
+		while (dbConnection->Fetch())
+		{
+			auto data = MakeShared<T>();
+
+			TableInfo* tableInfo = data->GetTableInfo();
+			tableInfo->Mapping(columnInfo);
+
+			auto uniqueKey = tableInfo->GetUniqueKey();
+			/*	data->GetTableInfo()->SetMarkAsUpdated([collection, uniqueKey]() {
+					collection->AddUpdatedIndex(uniqueKey);
+				});*/
+			collection->Add(uniqueKey, data, false);
+		}
+
+		return collection;
+	};
 };
 
