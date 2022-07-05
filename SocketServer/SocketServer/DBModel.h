@@ -7,9 +7,6 @@
 template<typename T>
 class DBModel
 {
-protected:
-
-
 public:
 	/* 인터페이스 */
 	virtual String GetTableName() abstract;
@@ -158,12 +155,9 @@ public:
 			auto data = MakeShared<T>();
 
 			TableInfo* tableInfo = data->GetTableInfo();
-			tableInfo->Mapping(columnInfo);
+			tableInfo->CopyValue(columnInfo);
 
 			auto uniqueKey = tableInfo->GetUniqueKey();
-			/*	data->GetTableInfo()->SetMarkAsUpdated([collection, uniqueKey]() {
-					collection->AddUpdatedIndex(uniqueKey);
-				});*/
 			collection->Add(uniqueKey, data, false);
 		}
 

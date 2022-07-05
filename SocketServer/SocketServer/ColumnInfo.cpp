@@ -2,20 +2,6 @@
 #include "ColumnInfo.h"
 #include "ColumnDataType.h"
 
-void ColumnInfoVector::AddColumnInfo(ColumnInfo info)
-{
-	_vector.push_back(info);
-}
-
-ColumnInfo ColumnInfoVector::Find(String columnName)
-{
-	for (const auto& columnInfo : _vector) {
-		if (columnInfo._columnName == columnName) {
-			return columnInfo;
-		}
-	}
-}
-
 ColumnInfo::ColumnInfo(String columnName, ColumnDataType dataType, Constraint constraint)
 {
 	_columnName = columnName;
@@ -41,12 +27,25 @@ ColumnInfo::ColumnInfo(String columnName, String value)
 	_dataType = ColumnDataType::STRING;
 
 	// Wstring 을 wchar 로 변경
-
 	auto ptr = MakeShared<WCHAR[]>(value.size());
 
 	//wcsncpy_s();
 	wcsncpy_s(ptr.get(), value.size() + 1, value.c_str(), value.size() + 1);
 	_columnValuePtr = ptr;
+}
+
+void ColumnInfoVector::AddColumnInfo(ColumnInfo info)
+{
+	_vector.push_back(info);
+}
+
+ColumnInfo ColumnInfoVector::Find(String columnName)
+{
+	for (const auto& columnInfo : _vector) {
+		if (columnInfo._columnName == columnName) {
+			return columnInfo;
+		}
+	}
 }
 
 void ColumnInfo::CopyValue(shared_ptr<void> ptr)

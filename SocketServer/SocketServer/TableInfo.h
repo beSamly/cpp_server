@@ -53,14 +53,12 @@ public:
 	ColumnInfoVector GetInsertInto() {
 		ColumnInfoVector infoVector;
 
-		Vector<ColumnInfo> info;
 		for (auto& columnInfo : _info) {
 			if (columnInfo._constraint != Constraint::AUTO_GENERATED) {
-				info.push_back(columnInfo);
+				infoVector.AddColumnInfo(columnInfo);
 			}
 		}
 
-		infoVector._vector = info;
 		return infoVector;
 	}
 
@@ -68,31 +66,27 @@ public:
 
 		ColumnInfoVector infoVector;
 
-		Vector<ColumnInfo> info;
 		for (auto& columnInfo : _info) {
 			if (columnInfo._constraint != Constraint::PRIMARY_KEY &&
 				columnInfo._constraint != Constraint::UNIQUE_KEY &&
 				columnInfo._constraint != Constraint::AUTO_GENERATED
 				) {
-				info.push_back(columnInfo);
+				infoVector.AddColumnInfo(columnInfo);
 			}
 		}
 
-		infoVector._vector = info;
 		return infoVector;
 	}
 
 	ColumnInfoVector GetPrimaryKeyInfo() {
 		ColumnInfoVector infoVector;
 
-		Vector<ColumnInfo> info;
 		for (auto& columnInfo : _info) {
 			if (columnInfo._constraint == Constraint::PRIMARY_KEY || columnInfo._constraint == Constraint::UNIQUE_KEY) {
-				info.push_back(columnInfo);
+				infoVector.AddColumnInfo(columnInfo);
 			}
 		}
 
-		infoVector._vector = info;
 		return infoVector;
 	}
 
@@ -104,11 +98,9 @@ public:
 				return *static_pointer_cast<int32>(columnInfo._columnValuePtr);
 			}
 		}
-
-		return 0;
 	}
 
-	void Mapping(ColumnInfoVector& columnInfoVector) {
+	void CopyValue(ColumnInfoVector& columnInfoVector) {
 		for (auto& info : _info) {
 			auto target = columnInfoVector.Find(info._columnName);
 			info.CopyValue(target._columnValuePtr);
