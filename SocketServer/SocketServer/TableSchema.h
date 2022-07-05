@@ -1,7 +1,7 @@
 #pragma once
 #include "ColumnInfo.h"
 
-class TableInfo
+class TableSchema
 {
 private:
 	Vector<ColumnInfo> _info;
@@ -11,9 +11,9 @@ public:
 	void SetMarkAsUpdated(function<void()> func) { MarkAsUpdated = func; };
 
 public:
-	TableInfo() {}
+	TableSchema() {}
 
-	TableInfo(ColumnInfo s1, ColumnInfo s2, ColumnInfo s3, ColumnInfo s4, ColumnInfo s5) {
+	TableSchema(ColumnInfo s1, ColumnInfo s2, ColumnInfo s3, ColumnInfo s4, ColumnInfo s5) {
 		_info.push_back(s1);
 		_info.push_back(s2);
 		_info.push_back(s3);
@@ -100,7 +100,7 @@ public:
 		}
 	}
 
-	void CopyValue(ColumnInfoVector& columnInfoVector) {
+	void CopyColumnValue(ColumnInfoVector& columnInfoVector) {
 		for (auto& info : _info) {
 			auto target = columnInfoVector.Find(info._columnName);
 			info.CopyValue(target._columnValuePtr);

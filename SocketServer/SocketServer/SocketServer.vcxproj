@@ -192,7 +192,7 @@
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="RunInterval.cpp" />
     <ClCompile Include="SocketServer.cpp" />
-    <ClCompile Include="TableInfo.cpp" />
+    <ClCompile Include="TableSchema.cpp" />
     <ClCompile Include="ThreadManager.cpp" />
     <ClCompile Include="TimeHelper.cpp" />
     <ClCompile Include="TLS.cpp" />
@@ -226,7 +226,7 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="RunInterval.h" />
     <ClInclude Include="SocketServer.h" />
-    <ClInclude Include="TableInfo.h" />
+    <ClInclude Include="TableSchema.h" />
     <ClInclude Include="ThreadManager.h" />
     <ClInclude Include="TimeHelper.h" />
     <ClInclude Include="TLS.h" />

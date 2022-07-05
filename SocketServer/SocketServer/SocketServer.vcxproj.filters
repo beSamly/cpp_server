@@ -148,7 +148,7 @@
     <ClCompile Include="Account.cpp">
       <Filter>Source Files\DB\Model</Filter>
     </ClCompile>
-    <ClCompile Include="TableInfo.cpp">
+    <ClCompile Include="TableSchema.cpp">
       <Filter>Source Files\DB\ModelInfo</Filter>
     </ClCompile>
     <ClCompile Include="TimeHelper.cpp">
@@ -246,7 +246,7 @@
     <ClInclude Include="Account.h">
       <Filter>Source Files\DB\Model</Filter>
     </ClInclude>
-    <ClInclude Include="TableInfo.h">
+    <ClInclude Include="TableSchema.h">
       <Filter>Source Files\DB\ModelInfo</Filter>
     </ClInclude>
     <ClInclude Include="TimeHelper.h">

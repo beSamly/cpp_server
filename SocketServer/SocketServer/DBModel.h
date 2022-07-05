@@ -2,7 +2,7 @@
 #include "DBConnectionPool.h"
 #include "DBConnection.h"
 #include "DBQueryHelper.h"
-#include "TableInfo.h"
+#include "TableSchema.h"
 
 template<typename T>
 class DBModel
@@ -10,7 +10,7 @@ class DBModel
 public:
 	/* 인터페이스 */
 	virtual String GetTableName() abstract;
-	virtual TableInfo* GetTableInfo() abstract;
+	virtual TableSchema* GetTableSchema() abstract;
 
 public:
 	CollectionRef<shared_ptr<T>> FindAllByAccountId(int32 accountId) {
@@ -24,9 +24,9 @@ public:
 		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
 		dbConnection->Unbind();
 
-		TableInfo* tableInfo = GetTableInfo();
+		TableSchema* tableSchema = GetTableSchema();
 
-		ColumnInfoVector columnInfo = tableInfo->GetColumnInfo();
+		ColumnInfoVector columnInfo = tableSchema->GetColumnInfo();
 		SQLLEN sqllen = 0;
 		DBQueryHelper::BindCol(&columnInfo, dbConnection, &sqllen);
 
@@ -48,7 +48,7 @@ public:
 
 		if (dbConnection->Fetch()) {
 			auto data = MakeShared<T>();
-			data->GetTableInfo()->Mapping(columnInfo);
+			data->GetTableSchema()->CopyColumnValue(columnInfo);
 			return data;
 		}
 		else {
@@ -60,8 +60,8 @@ public:
 		DBConnectionGaurdRef dbConnectionGaurd = ConnectionPool->Pop();
 		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
 
-		TableInfo* tableInfo = GetTableInfo();
-		ColumnInfoVector updateInfo = tableInfo->GetInsertInto();
+		TableSchema* tableSchema = GetTableSchema();
+		ColumnInfoVector updateInfo = tableSchema->GetInsertInto();
 
 		SQLLEN sqllen = 0;
 		DBQueryHelper::BindParam(&updateInfo, dbConnection, &sqllen);
@@ -82,9 +82,9 @@ public:
 		dbConnection->Unbind();
 
 		SQLLEN sqllen = 0;
-		TableInfo* tableInfo = GetTableInfo();
+		TableSchema* tableSchema = GetTableSchema();
 
-		ColumnInfoVector keyInfo = tableInfo->GetPrimaryKeyInfo();
+		ColumnInfoVector keyInfo = tableSchema->GetPrimaryKeyInfo();
 		DBQueryHelper::BindParam(&keyInfo, dbConnection, &sqllen);
 
 		Vector<String> keyNames = keyInfo.ExtractKeyNames();
@@ -104,10 +104,10 @@ public:
 
 		SQLLEN sqllen = 0;
 
-		TableInfo* tableInfo = GetTableInfo();
+		TableSchema* tableSchema = GetTableSchema();
 
-		ColumnInfoVector columnInfo = tableInfo->GetUpdateInfo();
-		ColumnInfoVector primaryKeyInfo = tableInfo->GetPrimaryKeyInfo();
+		ColumnInfoVector columnInfo = tableSchema->GetUpdateInfo();
+		ColumnInfoVector primaryKeyInfo = tableSchema->GetPrimaryKeyInfo();
 		Vector<String> columnNames = columnInfo.ExtractKeyNames();
 		Vector<String> primaryKeyNames = primaryKeyInfo.ExtractKeyNames();
 
@@ -128,8 +128,8 @@ public:
 		DBConnection* dbConnection = dbConnectionGaurd->GetConnection();
 		dbConnection->Unbind();
 
-		TableInfo* tableInfo = GetTableInfo();
-		ColumnInfoVector columnInfo = tableInfo->GetColumnInfo();
+		TableSchema* tableSchema = GetTableSchema();
+		ColumnInfoVector columnInfo = tableSchema->GetColumnInfo();
 		SQLLEN sqllen = 0;
 		DBQueryHelper::BindCol(&columnInfo, dbConnection, &sqllen);
 
@@ -154,10 +154,10 @@ public:
 		{
 			auto data = MakeShared<T>();
 
-			TableInfo* tableInfo = data->GetTableInfo();
-			tableInfo->CopyValue(columnInfo);
+			TableSchema* table = data->GetTableSchema();
+			table->CopyColumnValue(columnInfo);
 
-			auto uniqueKey = tableInfo->GetUniqueKey();
+			auto uniqueKey = table->GetUniqueKey();
 			collection->Add(uniqueKey, data, false);
 		}
 

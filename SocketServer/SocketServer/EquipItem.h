@@ -2,7 +2,7 @@
 #include "DBConnection.h"
 #include "DBModel.h"
 #include "ColumnInfo.h"
-#include "TableInfo.h"
+#include "TableSchema.h"
 
 namespace {
 	String ACCOUNT_ID = L"AccountId";
@@ -16,7 +16,7 @@ namespace {
 class EquipItem : public DBModel<EquipItem>
 {
 private:
-	TableInfo _info{
+	TableSchema _info{
 		ColumnInfo(ACCOUNT_ID, ColumnDataType::INT32, Constraint::PRIMARY_KEY),
 		ColumnInfo(SLOT_INDEX, ColumnDataType::INT32, Constraint::UNIQUE_KEY),
 		ColumnInfo(EQUIP_ITEM_INDEX, ColumnDataType::INT32),
@@ -43,7 +43,7 @@ public:
 
 public:
 	/* 인터페이스 구현 */
-	TableInfo* GetTableInfo() { return &_info; };
+	TableSchema* GetTableSchema() { return &_info; };
 	String GetTableName() { return EQUIP_ITEM_TABLE_NAME; };
 };
 

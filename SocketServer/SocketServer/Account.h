@@ -15,7 +15,7 @@ private:
 	String ACCOUNT_TABLE_NAME = L"Account";
 
 private:
-	TableInfo _info{
+	TableSchema _info{
 		ColumnInfo(ACCOUNT_ID, ColumnDataType::INT32, Constraint::PRIMARY_KEY),
 		ColumnInfo(EMAIL, ColumnDataType::STRING, Constraint::UNIQUE_KEY),
 		ColumnInfo(PASSWORD, ColumnDataType::STRING),
@@ -38,7 +38,7 @@ public:
 
 public:
 	/* 인터페이스 구현 */
-	TableInfo* GetTableInfo() { return &_info; }
+	TableSchema* GetTableSchema() { return &_info; }
 	String GetTableName() { return ACCOUNT_TABLE_NAME; };
 
 public:

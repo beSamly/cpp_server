@@ -25,7 +25,7 @@ void Collection<T>::Add(int32 key, T t, bool isNewData)
 	WRITE_LOCK;
 	_collection->insert(std::make_pair(key, t));
 
-	t->GetTableInfo()->SetMarkAsUpdated([this, key]() {
+	t->GetTableSchema()->SetMarkAsUpdated([this, key]() {
 		this->AddUpdatedIndex(key);
 	});
 
