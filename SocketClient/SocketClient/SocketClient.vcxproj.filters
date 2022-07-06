@@ -52,7 +52,7 @@
     <ClCompile Include="IPacketHandler.cpp">
       <Filter>Source Files\Packet\Interface</Filter>
     </ClCompile>
-    <ClCompile Include="LoginResponseHandler.cpp">
+    <ClCompile Include="LoginResponse.cpp">
       <Filter>Source Files\Packet\PacketHandler</Filter>
     </ClCompile>
     <ClCompile Include="PacketManager.cpp">
@@ -81,7 +81,7 @@
     <ClInclude Include="IPacketHandler.h">
       <Filter>Source Files\Packet\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="LoginResponseHandler.h">
+    <ClInclude Include="LoginResponse.h">
       <Filter>Source Files\Packet\PacketHandler</Filter>
     </ClInclude>
     <ClInclude Include="PacketManager.h">

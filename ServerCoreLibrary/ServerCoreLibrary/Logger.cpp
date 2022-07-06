@@ -20,6 +20,7 @@ void Logger::Error(const string str, ...)
 
 void Logger::Debug(const string str, ...)
 {
+	//TODO 개발 환경에서만 로그 남기도록 수정
 	Log(Color::BLUE, false, str, "[INFO]");
 }
 

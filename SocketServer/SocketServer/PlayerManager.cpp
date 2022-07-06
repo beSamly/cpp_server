@@ -9,8 +9,6 @@ void PlayerManager::AddPlayer(PlayerRef player)
 	return;
 }
 void PlayerManager::Update() {
-	Log->Info("inside PlayerManager update function");
-
 	Vector<PlayerRef> copiedPlayers;
 	{
 		WRITE_LOCK;
@@ -28,5 +26,5 @@ PlayerManager::PlayerManager() {
 	auto job = MakeShared<Job>([this]() {
 		this->Update();
 	});
-	RunInterval::SetInterval(job);
+	Scheduler::SetInterval(job);
 }

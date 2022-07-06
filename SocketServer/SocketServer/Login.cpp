@@ -8,6 +8,7 @@
 #include "PlayerManager.h"
 #include "InputValidator.h"
 #include "Account.h"
+#include "LoginResponse.pb.h"
 
 bool PacketHandler::Login::Validate(ClientSessionRef& session, BYTE* buffer, int32 len)
 {
@@ -32,26 +33,49 @@ void PacketHandler::Login::HandlePacket(ClientSessionRef& session, BYTE* buffer,
 	if (pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
 		return;
 
-	Log->Info("[LoginRequest Packet] info email : " + pkt.email() + " password : " + pkt.password());
-
 	auto email = pkt.email();
 	auto password = pkt.password();
-	auto account = Account().FindOneByEmail(wstring(email.begin(), email.end()));
+	auto w_email = wstring(email.begin(), email.end());
+
+	auto account = Account().FindOneByEmail(w_email);
+
+	// 해당 이메일에 계정이 없을 때
 	if (account == nullptr) {
+		Protocol::LoginResponse response;
+		response.set_result(false);
+		response.set_message("Account does not exist");
+		session->SendLoginResponse(response);
 		return;
 	}
 
+	// 비밀번호가 틀릴 때
 	if (wstring(password.begin(), password.end()) != account->GetPassword()) {
+		Protocol::LoginResponse response;
+		response.set_result(false);
+		response.set_message("Invalid authentication info");
+		session->SendLoginResponse(response);
 		return;
 	}
 
-	// TODO find account from db
-	// TODO load player
-	PlayerRef player = MakeShared<Player>(account->GetAccountId());
+	auto accountId = account->GetAccountId();
+	PlayerRef player = MakeShared<Player>(accountId);
+
+	// DB로 부터 유저 정보 읽어오기
 	player->LoadPlayerFromDB();
 
-	// TODO add player to clientSession
+	// 네트워크 세션과 연동
 	session->SetPlayer(player);
 
 	GPlayerManager->AddPlayer(player);
+
+	// Response 보내기
+	Protocol::LoginResponse response;
+	response.set_result(true);
+
+	Vector<EquipItemRef> equipItems = player->GetEquipItems();
+	for (EquipItemRef source : equipItems) {
+		source->CopyToProtobuf(response.add_equipitems());
+	}
+
+	session->SendLoginResponse(response);
 }

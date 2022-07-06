@@ -13,7 +13,7 @@ private:
 	String CREATED_AT = L"CreatedAt";
 	String STAR = L"Star";
 
-	String EQUIP_ITEM_TABLE_NAME = L"EquipItem";
+	String TABLE_NAME = L"EquipItem";
 
 	TableSchema _data{
 		{
@@ -45,6 +45,9 @@ public:
 public:
 	/* 인터페이스 구현 */
 	TableSchema* GetTableSchema() { return &_data; };
-	String GetTableName() { return EQUIP_ITEM_TABLE_NAME; };
+	String GetTableName() { return TABLE_NAME; };
+
+public:
+	void CopyToProtobuf(Protocol::EquipItem* equipItem);
 };
 

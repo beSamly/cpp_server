@@ -5,6 +5,7 @@ class Collection
 {
 public:
 	T Find(int32 key);
+	Vector<T> GetVector();
 	bool KeyExist(int32 key);
 	bool Remove(int32 key);
 	void Update();
@@ -35,9 +36,9 @@ void Collection<T>::Add(int32 key, T t, bool isNewData)
 };
 
 template<typename T>
-inline void Collection<T>::SetData(MapRef<int32, T> collectoin)
+inline void Collection<T>::SetData(MapRef<int32, T> collection)
 {
-	_collection = collectoin;
+	_collection = collection;
 };
 
 template<typename T>
@@ -56,11 +57,23 @@ T Collection<T>::Find(int32 key)
 	READ_LOCK;
 	auto target = _collection->find(key);
 
-	/*if (target == nullptr) {
+	if (target == _collection->end()) {
 		return nullptr;
-	}*/
+	}
 
 	return target->second;
+};
+
+template<typename T>
+Vector<T> Collection<T>::GetVector()
+{
+	READ_LOCK;
+	Vector<T> vector;
+
+	for (auto const& [first, second] : *_collection) {
+		vector.push_back(second);
+	}
+	return vector;
 };
 
 template<typename T>

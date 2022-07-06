@@ -94,6 +94,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,6 +125,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,7 +152,7 @@
     <ClCompile Include="GlobalVar.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="IPacketHandler.cpp" />
-    <ClCompile Include="LoginResponseHandler.cpp" />
+    <ClCompile Include="LoginResponse.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PacketManager.cpp" />
     <ClCompile Include="PacketId.cpp" />
@@ -165,7 +167,7 @@
     <ClInclude Include="GlobalVar.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="IPacketHandler.h" />
-    <ClInclude Include="LoginResponseHandler.h" />
+    <ClInclude Include="LoginResponse.h" />
     <ClInclude Include="PacketManager.h" />
     <ClInclude Include="PacketId.h" />
     <ClInclude Include="pch.h" />

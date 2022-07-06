@@ -12,7 +12,7 @@ private:
 	String IS_ADMIN = L"IsAdmin";
 	String CREATED_AT = L"CreatedAt";
 
-	String ACCOUNT_TABLE_NAME = L"Account";
+	String TABLE_NAME = L"Account";
 
 	TableSchema _data{
 		{
@@ -40,7 +40,7 @@ public:
 public:
 	/* 인터페이스 구현 */
 	TableSchema* GetTableSchema() { return &_data; }
-	String GetTableName() { return ACCOUNT_TABLE_NAME; };
+	String GetTableName() { return TABLE_NAME; };
 
 public:
 	/* ORM 함수 */

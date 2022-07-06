@@ -37,6 +37,11 @@ EquipItemRef Player::GetEquipItem(int32 slotIndex)
 	return equipItemCollection->Find(slotIndex);
 }
 
+Vector<EquipItemRef> Player::GetEquipItems()
+{
+	return equipItemCollection->GetVector();
+}
+
 bool Player::RemoveEquipItem(int32 slotIndex)
 {
 	equipItemCollection->Remove(slotIndex);

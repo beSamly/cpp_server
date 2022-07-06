@@ -60,7 +60,7 @@ bool DBConnection::Execute(const WCHAR* query)
 }
 
 bool DBConnection::Fetch()
- {
+{
 	SQLRETURN ret = ::SQLFetch(_statement);
 
 	switch (ret)
@@ -69,7 +69,6 @@ bool DBConnection::Fetch()
 	case SQL_SUCCESS_WITH_INFO:
 		return true;
 	case SQL_NO_DATA:
-		// TODO Log
 		return false;
 	case SQL_ERROR:
 		HandleError(ret);
@@ -270,13 +269,8 @@ void DBConnection::HandleError(SQLRETURN ret)
 		if (errorRet != SQL_SUCCESS && errorRet != SQL_SUCCESS_WITH_INFO)
 			break;
 
-		// TODO : Log
-		std::wcout.imbue(std::locale("kor"));
-
-		// TODO wcout -> Log.Error
-		//Log->Error("[DBConnection] HandleError " + errMsg)
-		std::wcout << errMsg << endl;
-
+		auto w_errmsg = wstring(errMsg);
+		Log->Error(format("[DBConnection] {}", string(w_errmsg.begin(), w_errmsg.end())));
 		index++;
 	}
 }

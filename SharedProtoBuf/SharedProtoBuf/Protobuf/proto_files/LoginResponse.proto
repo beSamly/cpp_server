@@ -1,0 +1,10 @@
+syntax = "proto3";
+import "EquipItem.proto";
+
+package Protocol;
+
+message LoginResponse{
+	bool result = 1;
+	string message = 2;
+	repeated EquipItem EquipItems = 3;
+}

@@ -7,7 +7,6 @@
 /*--------------
 	Session
 ---------------*/
-
 Session::Session() : _recvBuffer(BUFFER_SIZE)
 {
 	_socket = SocketUtils::CreateSocket();
@@ -89,7 +88,7 @@ bool Session::RegisterConnect()
 	if (SocketUtils::SetReuseAddress(_socket, true) == false)
 		return false;
 
-	if (SocketUtils::BindAnyAddress(_socket, 0/*남는거*/) == false)
+	if (SocketUtils::BindAnyAddress(_socket, 0) == false)
 		return false;
 
 	_connectEvent.Init();
@@ -148,7 +147,7 @@ void Session::RegisterRecv()
 		if (errorCode != WSA_IO_PENDING)
 		{
 			HandleError(errorCode);
-			_recvEvent.owner = nullptr; // RELEASE_REF
+			_recvEvent.owner = nullptr; 
 		}
 	}
 }
@@ -159,7 +158,7 @@ void Session::RegisterSend()
 		return;
 
 	_sendEvent.Init();
-	_sendEvent.owner = shared_from_this(); // ADD_REF
+	_sendEvent.owner = shared_from_this(); 
 
 	// 보낼 데이터를 sendEvent에 등록
 	{
@@ -205,16 +204,11 @@ void Session::RegisterSend()
 
 void Session::ProcessConnect()
 {
-	_connectEvent.owner = nullptr; // RELEASE_REF
+	_connectEvent.owner = nullptr; 
 
 	_connected.store(true);
 
-	// 세션을 등록하는 부분은 비지니스 로직이기 때문에 OnConnected를 구현하는 부에서 해줘야 한다고
-	// 생각하여 일단 주석처리
-	// 세션 등록
-	//GetService()->AddSession(GetSessionRef());
-
-	// 컨텐츠 코드에서 재정의
+	// Connect 됐을 때의 비즈니스 로직은 구현부에서 재정의
 	OnConnected();
 
 	// 수신 등록
@@ -223,7 +217,7 @@ void Session::ProcessConnect()
 
 void Session::ProcessDisconnect()
 {
-	_disconnectEvent.owner = nullptr; // RELEASE_REF
+	_disconnectEvent.owner = nullptr; 
 	_server->OnDisconnected(static_pointer_cast<Session>(shared_from_this()));
 	OnDisconnected(); // 컨텐츠 코드에서 재정의
 	// 세션을 릴리즈 하는 부분도 비지니스 로직이기 구현부에서 처리 해줘야 한다고 생각하여 일단 주석처리
@@ -232,7 +226,7 @@ void Session::ProcessDisconnect()
 
 void Session::ProcessRecv(int32 numOfBytes)
 {
-	_recvEvent.owner = nullptr; // RELEASE_REF
+	_recvEvent.owner = nullptr;
 
 	if (numOfBytes == 0)
 	{
@@ -272,7 +266,7 @@ void Session::ProcessSend(int32 numOfBytes)
 		return;
 	}
 
-	// 컨텐츠 코드에서 재정의
+	// Send 완료 후 비즈니스 로직은 구현부에서 재정의
 	OnSend(numOfBytes);
 
 	WRITE_LOCK;
@@ -291,7 +285,6 @@ void Session::HandleError(int32 errorCode)
 		Disconnect(L"HandleError");
 		break;
 	default:
-		// TODO : Log
 		cout << "Handle Error : " << errorCode << endl;
 		break;
 	}

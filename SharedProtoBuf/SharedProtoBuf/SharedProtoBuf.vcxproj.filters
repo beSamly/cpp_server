@@ -32,7 +32,10 @@
       <Filter>Source Files\Protobuf</Filter>
     </ClCompile>
     <ClCompile Include="Protobuf\UpgradeEquipItem.pb.cc">
-      <Filter>Source Files\Protofiles</Filter>
+      <Filter>Source Files\Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="Protobuf\LoginResponse.pb.cc">
+      <Filter>Source Files\Protobuf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,7 +55,10 @@
       <Filter>Source Files\Protobuf</Filter>
     </ClInclude>
     <ClInclude Include="Protobuf\UpgradeEquipItem.pb.h">
-      <Filter>Source Files\Protofiles</Filter>
+      <Filter>Source Files\Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="Protobuf\LoginResponse.pb.h">
+      <Filter>Source Files\Protobuf</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +78,9 @@
       <Filter>Source Files\Protofiles</Filter>
     </None>
     <None Include="Protobuf\proto_files\UpgradeEquipItem.proto">
+      <Filter>Source Files\Protofiles</Filter>
+    </None>
+    <None Include="Protobuf\proto_files\LoginResponse.proto">
       <Filter>Source Files\Protofiles</Filter>
     </None>
   </ItemGroup>

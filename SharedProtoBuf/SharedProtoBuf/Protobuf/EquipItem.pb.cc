@@ -25,6 +25,7 @@ PROTOBUF_CONSTEXPR EquipItem::EquipItem(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.slotindex_)*/uint64_t{0u}
   , /*decltype(_impl_.equipitemindex_)*/uint64_t{0u}
+  , /*decltype(_impl_.star_)*/uint64_t{0u}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct EquipItemDefaultTypeInternal {
   PROTOBUF_CONSTEXPR EquipItemDefaultTypeInternal()
@@ -49,6 +50,7 @@ const uint32_t TableStruct_EquipItem_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::EquipItem, _impl_.slotindex_),
   PROTOBUF_FIELD_OFFSET(::Protocol::EquipItem, _impl_.equipitemindex_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::EquipItem, _impl_.star_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::EquipItem)},
@@ -59,13 +61,13 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_EquipItem_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\017EquipItem.proto\022\010Protocol\"6\n\tEquipItem"
+  "\n\017EquipItem.proto\022\010Protocol\"D\n\tEquipItem"
   "\022\021\n\tSlotIndex\030\001 \001(\004\022\026\n\016EquipItemIndex\030\002 "
-  "\001(\004b\006proto3"
+  "\001(\004\022\014\n\004Star\030\003 \001(\004b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_EquipItem_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_EquipItem_2eproto = {
-    false, false, 91, descriptor_table_protodef_EquipItem_2eproto,
+    false, false, 105, descriptor_table_protodef_EquipItem_2eproto,
     "EquipItem.proto",
     &descriptor_table_EquipItem_2eproto_once, nullptr, 0, 1,
     schemas, file_default_instances, TableStruct_EquipItem_2eproto::offsets,
@@ -98,12 +100,13 @@ EquipItem::EquipItem(const EquipItem& from)
   new (&_impl_) Impl_{
       decltype(_impl_.slotindex_){}
     , decltype(_impl_.equipitemindex_){}
+    , decltype(_impl_.star_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.slotindex_, &from._impl_.slotindex_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.equipitemindex_) -
-    reinterpret_cast<char*>(&_impl_.slotindex_)) + sizeof(_impl_.equipitemindex_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.star_) -
+    reinterpret_cast<char*>(&_impl_.slotindex_)) + sizeof(_impl_.star_));
   // @@protoc_insertion_point(copy_constructor:Protocol.EquipItem)
 }
 
@@ -114,6 +117,7 @@ inline void EquipItem::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.slotindex_){uint64_t{0u}}
     , decltype(_impl_.equipitemindex_){uint64_t{0u}}
+    , decltype(_impl_.star_){uint64_t{0u}}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -142,8 +146,8 @@ void EquipItem::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.slotindex_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.equipitemindex_) -
-      reinterpret_cast<char*>(&_impl_.slotindex_)) + sizeof(_impl_.equipitemindex_));
+      reinterpret_cast<char*>(&_impl_.star_) -
+      reinterpret_cast<char*>(&_impl_.slotindex_)) + sizeof(_impl_.star_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -165,6 +169,14 @@ const char* EquipItem::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _impl_.equipitemindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 Star = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.star_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -210,6 +222,12 @@ uint8_t* EquipItem::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_equipitemindex(), target);
   }
 
+  // uint64 Star = 3;
+  if (this->_internal_star() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(3, this->_internal_star(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -236,6 +254,11 @@ size_t EquipItem::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_equipitemindex());
   }
 
+  // uint64 Star = 3;
+  if (this->_internal_star() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_star());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -260,6 +283,9 @@ void EquipItem::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROT
   if (from._internal_equipitemindex() != 0) {
     _this->_internal_set_equipitemindex(from._internal_equipitemindex());
   }
+  if (from._internal_star() != 0) {
+    _this->_internal_set_star(from._internal_star());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -278,8 +304,8 @@ void EquipItem::InternalSwap(EquipItem* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(EquipItem, _impl_.equipitemindex_)
-      + sizeof(EquipItem::_impl_.equipitemindex_)
+      PROTOBUF_FIELD_OFFSET(EquipItem, _impl_.star_)
+      + sizeof(EquipItem::_impl_.star_)
       - PROTOBUF_FIELD_OFFSET(EquipItem, _impl_.slotindex_)>(
           reinterpret_cast<char*>(&_impl_.slotindex_),
           reinterpret_cast<char*>(&other->_impl_.slotindex_));

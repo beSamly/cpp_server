@@ -27,7 +27,6 @@ bool DBConnectionPool::Connect(int32 connectionCount, const WCHAR* connectionStr
 
 	for (int32 i = 0; i < connectionCount; i++)
 	{
-		// TODO new 말고 shared로 변경?
 		DBConnection* connection = new DBConnection();
 		if (connection->Connect(_environment, connectionString) == false)
 			return false;

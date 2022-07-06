@@ -14,8 +14,6 @@ BaseSocketServer::~BaseSocketServer()
 
 	for (AcceptEvent* acceptEvent : _acceptEvents)
 	{
-		// TODO
-
 		delete(acceptEvent);
 	}
 }

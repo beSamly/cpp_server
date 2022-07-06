@@ -1,4 +1,5 @@
 #pragma once
+#include <format>;
 
 #ifdef _DEBUG
 #pragma comment(lib, "Protobuf\\Debug\\libprotobufd.lib")
@@ -15,5 +16,6 @@
 #include "SocketClient.h"
 #include "ServerSession.h"
 
+using std::format;
 using SocketClientRef = std::shared_ptr<class SocketClient>;
 using ServerSessionRef = std::shared_ptr<class ServerSession>;

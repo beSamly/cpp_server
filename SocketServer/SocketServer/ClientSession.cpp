@@ -2,15 +2,15 @@
 #include "ClientSession.h"
 #include "PacketManager.h"
 #include "PacketHeader.h"
+#include "PacketId.h"
+#include "LoginResponse.pb.h"
 
 ClientSession::ClientSession()
 {
-	//TODO
 }
 
 ClientSession::~ClientSession()
 {
-	//TODO
 }
 
 ClientSessionRef ClientSession::GetClientSessionRef()
@@ -18,7 +18,6 @@ ClientSessionRef ClientSession::GetClientSessionRef()
 	return static_pointer_cast<ClientSession>(shared_from_this());
 }
 
-// [size(2)][id(2)][data....][size(2)][id(2)][data....]
 int32 ClientSession::OnRecv(BYTE* buffer, int32 len)
 {
 	int32 processLen = 0;
@@ -26,7 +25,7 @@ int32 ClientSession::OnRecv(BYTE* buffer, int32 len)
 	while (true)
 	{
 		int32 dataSize = len - processLen;
-		// 최소한 헤더는 파싱할 수 있어야 한다
+		// 데이터 사이즈가 헤더 사이즈 보다 작을 순 없다
 		if (dataSize < sizeof(PacketHeader))
 			break;
 
@@ -52,16 +51,7 @@ void ClientSession::OnConnected()
 
 void ClientSession::OnDisconnected()
 {
-	/*GSessionManager.Remove(static_pointer_cast<ClientSession>(shared_from_this()));
-
-	if (_currentPlayer)
-	{
-		if (auto room = _room.lock())
-			room->DoAsync(&Room::Leave, _currentPlayer);
-	}
-
-	_currentPlayer = nullptr;
-	_players.clear();*/
+	// TODO
 }
 
 
@@ -85,4 +75,10 @@ PlayerRef ClientSession::GetPlayer()
 void ClientSession::SetPlayer(PlayerRef player)
 {
 	_player = player;
+}
+
+void ClientSession::SendLoginResponse(Protocol::LoginResponse pkt)
+{
+	SendBufferRef buffer = PacketManager::PacketToSendBuffer(pkt, PacketId::LOGIN_RES);
+	this->Send(buffer);
 }

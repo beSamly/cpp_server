@@ -19,6 +19,8 @@ public:
 public:
 	EquipItemRef AddEquipItem(int32 equipItemIndex);
 	EquipItemRef GetEquipItem(int32 slotIndex);
+	Vector<EquipItemRef> GetEquipItems();
+
 	bool RemoveEquipItem(int32 slotIndex);
 };
 

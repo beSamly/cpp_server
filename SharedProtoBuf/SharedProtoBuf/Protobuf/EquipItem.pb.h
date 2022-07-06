@@ -179,6 +179,7 @@ class EquipItem final :
   enum : int {
     kSlotIndexFieldNumber = 1,
     kEquipItemIndexFieldNumber = 2,
+    kStarFieldNumber = 3,
   };
   // uint64 SlotIndex = 1;
   void clear_slotindex();
@@ -198,6 +199,15 @@ class EquipItem final :
   void _internal_set_equipitemindex(uint64_t value);
   public:
 
+  // uint64 Star = 3;
+  void clear_star();
+  uint64_t star() const;
+  void set_star(uint64_t value);
+  private:
+  uint64_t _internal_star() const;
+  void _internal_set_star(uint64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.EquipItem)
  private:
   class _Internal;
@@ -208,6 +218,7 @@ class EquipItem final :
   struct Impl_ {
     uint64_t slotindex_;
     uint64_t equipitemindex_;
+    uint64_t star_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -262,6 +273,26 @@ inline void EquipItem::_internal_set_equipitemindex(uint64_t value) {
 inline void EquipItem::set_equipitemindex(uint64_t value) {
   _internal_set_equipitemindex(value);
   // @@protoc_insertion_point(field_set:Protocol.EquipItem.EquipItemIndex)
+}
+
+// uint64 Star = 3;
+inline void EquipItem::clear_star() {
+  _impl_.star_ = uint64_t{0u};
+}
+inline uint64_t EquipItem::_internal_star() const {
+  return _impl_.star_;
+}
+inline uint64_t EquipItem::star() const {
+  // @@protoc_insertion_point(field_get:Protocol.EquipItem.Star)
+  return _internal_star();
+}
+inline void EquipItem::_internal_set_star(uint64_t value) {
+  
+  _impl_.star_ = value;
+}
+inline void EquipItem::set_star(uint64_t value) {
+  _internal_set_star(value);
+  // @@protoc_insertion_point(field_set:Protocol.EquipItem.Star)
 }
 
 #ifdef __GNUC__

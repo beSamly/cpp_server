@@ -29,7 +29,6 @@ Column::Column(String columnName, String value)
 	// Wstring 을 wchar 로 변경
 	auto ptr = MakeShared<WCHAR[]>(value.size());
 
-	//wcsncpy_s();
 	wcsncpy_s(ptr.get(), value.size() + 1, value.c_str(), value.size() + 1);
 	_columnValuePtr = ptr;
 }

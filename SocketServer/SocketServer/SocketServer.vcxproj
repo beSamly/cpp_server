@@ -190,11 +190,10 @@
     </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
-    <ClCompile Include="RunInterval.cpp" />
+    <ClCompile Include="Scheduler.cpp" />
     <ClCompile Include="SocketServer.cpp" />
     <ClCompile Include="TableSchema.cpp" />
     <ClCompile Include="ThreadManager.cpp" />
-    <ClCompile Include="TimeHelper.cpp" />
     <ClCompile Include="TLS.cpp" />
     <ClCompile Include="UpgradeEquipItem.cpp" />
   </ItemGroup>
@@ -224,11 +223,10 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerManager.h" />
-    <ClInclude Include="RunInterval.h" />
+    <ClInclude Include="Scheduler.h" />
     <ClInclude Include="SocketServer.h" />
     <ClInclude Include="TableSchema.h" />
     <ClInclude Include="ThreadManager.h" />
-    <ClInclude Include="TimeHelper.h" />
     <ClInclude Include="TLS.h" />
     <ClInclude Include="UpgradeEquipItem.h" />
   </ItemGroup>

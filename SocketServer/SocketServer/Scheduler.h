@@ -1,8 +1,8 @@
 #pragma once
-class RunInterval
+class Scheduler
 {
 public:
-	RunInterval();
+	Scheduler();
 protected:
 	void SetInterval(JobRef job);
 };

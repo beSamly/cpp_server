@@ -6,7 +6,8 @@ class ServerSession : public Session
 public:
 	ServerSession();
 	virtual ~ServerSession();
-	
+	std::shared_ptr<ServerSession> GetSessionRef();
+
 private:
 	/* 인터페이스 구현 */
 	virtual void	OnConnected() override;

@@ -1,5 +1,6 @@
 #pragma once
 #include "Session.h"
+#include "LoginResponse.pb.h"
 
 /*-----------------
 	ClientSession
@@ -19,6 +20,8 @@ public:
 public:
 	PlayerRef		GetPlayer();
 	void			SetPlayer(PlayerRef player);
+
+
 private:
 	/* 인터페이스 구현 */
 	virtual void	OnConnected() override;
@@ -28,5 +31,9 @@ private:
 
 private:
 	void			OnRecvPacket(BYTE* buffer, int32 len);
+
+public:
+	/* 컨텐츠 로직 */
+	void SendLoginResponse(Protocol::LoginResponse pkt);
 
 };

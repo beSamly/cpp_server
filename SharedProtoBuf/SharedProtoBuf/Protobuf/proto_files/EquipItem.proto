@@ -5,4 +5,5 @@ package Protocol;
 message EquipItem{
 	uint64 SlotIndex = 1;
 	uint64 EquipItemIndex = 2;
+	uint64 Star = 3;
 }
