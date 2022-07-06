@@ -1,5 +1,7 @@
 #pragma once
 #include <format>;
+#include <functional>;
+#include <vector>;
 
 #ifdef _DEBUG
 #pragma comment(lib, "Protobuf\\Debug\\libprotobufd.lib")

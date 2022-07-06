@@ -15,7 +15,6 @@ PacketManager::~PacketManager()
 }
 
 void PacketManager::Init() {
-	_handlers = Vector<IPacketHandler*>(UINT16_MAX, nullptr);
 	_handlers[PacketId::LOGIN_RES] = dynamic_cast<IPacketHandler*>(new PacketHandler::LoginResponse());
 
 }

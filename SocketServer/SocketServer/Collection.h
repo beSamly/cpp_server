@@ -1,7 +1,7 @@
 #pragma once
 
 template<typename T>
-class Collection
+class Collection : public enable_shared_from_this<Collection<T>>
 {
 public:
 	T Find(int32 key);
@@ -26,8 +26,8 @@ void Collection<T>::Add(int32 key, T t, bool isNewData)
 	WRITE_LOCK;
 	_collection->insert(std::make_pair(key, t));
 
-	t->GetTableSchema()->SetMarkAsUpdated([this, key]() {
-		this->AddUpdatedIndex(key);
+	t->GetTableSchema()->SetMarkAsUpdated([self = this->shared_from_this(), key]() {
+		self->AddUpdatedIndex(key);
 	});
 
 	if (isNewData) {

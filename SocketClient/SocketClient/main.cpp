@@ -23,9 +23,13 @@ int main() {
 		while (true)
 		{
 			int keyPressed;
-			cout << "Please press button" << endl;
+			cout << "Pleas choose option" << endl;
+			cout << "[1] Login" << endl;
+			cout << "[2] Buy EquipItem" << endl;
+			cout << "[3] Break EquipItem" << endl;
+			cout << "[4] Upgrade EquipItem" << endl;
 			std::cin >> keyPressed;
-			InputHandler::HandleInput(socketClient, keyPressed);
+			GInputHandler->HandleInput(socketClient, keyPressed);
 			cout << "Key pressed is " << keyPressed << endl;;
 		}
 	}));

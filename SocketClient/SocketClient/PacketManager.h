@@ -8,7 +8,7 @@
 class PacketManager
 {
 private:
-	std::vector<IPacketHandler*> _handlers;
+	Vector<IPacketHandler*> _handlers = Vector<IPacketHandler*>(UINT16_MAX, nullptr);
 
 public:
 	PacketManager();

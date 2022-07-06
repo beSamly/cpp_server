@@ -10,6 +10,9 @@ namespace PacketHandler {
 		bool Validate(ClientSessionRef& session, BYTE* buffer, int32 len) override;
 
 		void HandlePacket(ClientSessionRef& session, BYTE* buffer, int32 len) override;
+
+	private:
+		void HandleFail(ClientSessionRef& session, string reason);
 	};
 }
 

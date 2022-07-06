@@ -17,10 +17,12 @@ bool PacketHandler::Login::Validate(ClientSessionRef& session, BYTE* buffer, int
 		return false;
 
 	if (!InputValidator::IsEmail(pkt.email())) {
+		HandleFail(session, "Invalid Email form");
 		return false;
 	};
 
 	if (!InputValidator::IsValidPassword(pkt.password())) {
+		HandleFail(session, "Invalid authentication info");
 		return false;
 	};
 
@@ -41,20 +43,13 @@ void PacketHandler::Login::HandlePacket(ClientSessionRef& session, BYTE* buffer,
 
 	// 해당 이메일에 계정이 없을 때
 	if (account == nullptr) {
-		Protocol::LoginResponse response;
-		response.set_result(false);
-		response.set_message("Account does not exist");
-		session->SendLoginResponse(response);
+		HandleFail(session, "AccountId does not exist");
 		return;
 	}
 
 	// 비밀번호가 틀릴 때
 	if (wstring(password.begin(), password.end()) != account->GetPassword()) {
-		Protocol::LoginResponse response;
-		response.set_result(false);
-		response.set_message("Invalid authentication info");
-		session->SendLoginResponse(response);
-		return;
+		HandleFail(session, "Invalid authentication info");
 	}
 
 	auto accountId = account->GetAccountId();
@@ -78,4 +73,12 @@ void PacketHandler::Login::HandlePacket(ClientSessionRef& session, BYTE* buffer,
 	}
 
 	session->SendLoginResponse(response);
+}
+
+void PacketHandler::Login::HandleFail(ClientSessionRef& session, string reason) {
+	Protocol::LoginResponse response;
+	response.set_result(false);
+	response.set_message(reason);
+	session->SendLoginResponse(response);
+	return;
 }

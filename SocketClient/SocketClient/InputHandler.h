@@ -1,7 +1,11 @@
 #pragma once
+#include "SocketClient.h";
+
 class InputHandler
 {
 public:
-	void static HandleInput(SocketClientRef session, int32 key);
+	std::vector<std::function<void(SocketClientRef)>> _inputHandlers = std::vector<std::function<void(SocketClientRef)>>(UINT16_MAX, nullptr);;
+	void Init();
+	void HandleInput(SocketClientRef session, int32 key);
 };
 

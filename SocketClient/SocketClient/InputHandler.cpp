@@ -15,23 +15,18 @@ void SendBuyEquipItem(SocketClientRef socketClient);
 void SendBreakEquipItem(SocketClientRef socketClient);
 void SendUpgradeEquipItem(SocketClientRef socketClient);
 
+void InputHandler::Init()
+{
+	_inputHandlers[1] = SendLoginRequest;
+	_inputHandlers[2] = SendBuyEquipItem;
+	_inputHandlers[3] = SendBreakEquipItem;
+	_inputHandlers[4] = SendUpgradeEquipItem;
+}
+
 void InputHandler::HandleInput(SocketClientRef socketClient, int32 key)
 {
-	switch (key) {
-	case 1:
-		SendLoginRequest(socketClient);
-		break;
-	case 2:
-		SendBuyEquipItem(socketClient);
-		break;
-	case 3:
-		SendBreakEquipItem(socketClient);
-		break;
-	case 4:
-		SendUpgradeEquipItem(socketClient);
-		break;
-	default:
-		break;
+	if (_inputHandlers[key]) {
+		_inputHandlers[key](socketClient);
 	}
 }
 
